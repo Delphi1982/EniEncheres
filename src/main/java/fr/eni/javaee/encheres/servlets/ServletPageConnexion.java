@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import fr.eni.javaee.encheres.BusinessException;
 import fr.eni.javaee.encheres.bo.Utilisateur;
 import fr.eni.javaee.encheres.dal.DALException;
 import fr.eni.javaee.encheres.dal.DAO.UtilisateurDAO;
@@ -50,33 +49,23 @@ public class ServletPageConnexion extends HttpServlet {
 			this.getServletContext().getRequestDispatcher( "/WEB-INF/jsp/pageConnexion.jsp" ).forward( request, response );
 			return;
 		}
-
 		if (request.getParameter( "mdp" ).isEmpty()) {
 			message = "Veuillez renseigner votre mot de passe.";
 			request.setAttribute("erreur", message);
 			this.getServletContext().getRequestDispatcher( "/WEB-INF/jsp/pageConnexion.jsp" ).forward( request, response );
 			return; 
 		}
-
-		
-		
-		try {
-			
-			if (userCo .getPseudo == identifiant && userCo .getMotdePasse == motdepasse ) {
-				 HttpSession session = request.getSession();
-				 String pseudo = request.getParameter("identifiant");
-				 request.getSession().setAttribute("userCo", userCo);
-				 getServletContext().getRequestDispatcher("lien fichier ou url").forward( request, response );
-				 return; 
-			}else {
-				 message = "Utilisateur inconnu. Veuillez saisir un identifiant et un mot de passe existants ";
-				 request.setAttribute("erreur", message);
-				 getServletContext().getRequestDispatcher("/WEB-INF/jsp/pageConnexion.jsp").forward(request, response);
-				 return; 
-			}
-		} catch (BusinessException e) {
-			     request.setAttribute("erreur", e);
-			     this.getServletContext().getRequestDispatcher.forward( request, response );			
+		if (userCo.getPseudo() == identifiant && userCo.getMotDePasse() == motdepasse ) {
+			 HttpSession session = request.getSession();
+			 String pseudo = request.getParameter("identifiant");
+			 request.getSession().setAttribute("userCo", userCo);
+			 getServletContext().getRequestDispatcher("lien fichier ou url").forward( request, response );
+			 return; 
+		}else {
+			 message = "Utilisateur inconnu. Veuillez saisir un identifiant et un mot de passe existants ";
+			 request.setAttribute("erreur", message);
+			 getServletContext().getRequestDispatcher("/WEB-INF/jsp/pageConnexion.jsp").forward(request, response);
+			 return; 
 		}  
 		
 	}
