@@ -1,8 +1,7 @@
 package fr.eni.javaee.encheres.servlets;
 
 import java.io.IOException;
-import java.util.List;
-import javax.servlet.RequestDispatcher;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,9 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import fr.eni.javaee.encheres.bll.UtilisateurManager;
 import fr.eni.javaee.encheres.bo.Utilisateur;
-import fr.eni.javaee.encheres.dal.DALException;
-import fr.eni.javaee.encheres.dal.DAO.UtilisateurDAO;
 
 
 
@@ -36,22 +34,22 @@ public class ServletPageConnexion extends HttpServlet {
 
 		String identifiant = null;
 		String motdepasse = null;
-		String message = null;
-		Utilisateur userCo = new Utilisateur();
+		Utilisateur userCo = null;
 		
 		identifiant = request.getParameter( "identifiant" );
 		motdepasse = request.getParameter( "mdp" );
-		
+		UtilisateurManager utilisateurManager = new UtilisateurManager();
+		utilisateurManager.seconnecter (identifiant,motdepasse);
 		
 		if (request.getParameter( "identifiant" ).isEmpty() ) {
-			message = "Veuillez renseigner votre identifiant";
-			request.setAttribute("erreur", message);
+
+
 			this.getServletContext().getRequestDispatcher( "/WEB-INF/jsp/pageConnexion.jsp" ).forward( request, response );
 			return;
 		}
 		if (request.getParameter( "mdp" ).isEmpty()) {
-			message = "Veuillez renseigner votre mot de passe.";
-			request.setAttribute("erreur", message);
+	
+
 			this.getServletContext().getRequestDispatcher( "/WEB-INF/jsp/pageConnexion.jsp" ).forward( request, response );
 			return; 
 		}
@@ -62,8 +60,7 @@ public class ServletPageConnexion extends HttpServlet {
 			 getServletContext().getRequestDispatcher("lien fichier ou url").forward( request, response );
 			 return; 
 		}else {
-			 message = "Utilisateur inconnu. Veuillez saisir un identifiant et un mot de passe existants ";
-			 request.setAttribute("erreur", message);
+
 			 getServletContext().getRequestDispatcher("/WEB-INF/jsp/pageConnexion.jsp").forward(request, response);
 			 return; 
 		}  

@@ -10,7 +10,9 @@ import fr.eni.javaee.encheres.bo.Utilisateur;
 import fr.eni.javaee.encheres.dal.DAO.UtilisateurDAO;
 
 public class UtilisateurJDBCImpl implements UtilisateurDAO {
-
+	private static final String SELECT_BY_PSEUDO = "select no_utilisateur, pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,credit,administrateur from Utilisateurs where pseudo = ?;";
+	
+	
 private Connection conn;
 	
 	@Override
@@ -82,6 +84,13 @@ private Connection conn;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public Utilisateur selectbypseudo(String identifiant) {
+		Utilisateur utilisateur = null;
+		
+		return utilisateur;
 	}
 	
 	

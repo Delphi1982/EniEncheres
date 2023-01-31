@@ -10,5 +10,6 @@ import fr.eni.javaee.encheres.bo.Utilisateur;
 		public void delete(int id)throws BusinessException;
 
 		void update(Utilisateur user);
-	}
 
+		public Utilisateur selectbypseudo(String identifiant);
+	}
