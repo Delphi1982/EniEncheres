@@ -3,13 +3,14 @@ package fr.eni.javaee.encheres.dal.Jdbc;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 
 import fr.eni.javaee.encheres.BusinessException;
 import fr.eni.javaee.encheres.bo.Categorie;
 import fr.eni.javaee.encheres.dal.CodesResultatDAL;
 import fr.eni.javaee.encheres.dal.DAO.CategorieDAO;
+import fr.eni.javaee.encheres.dal.ConnectionProvider;
 
 public class CategorieJDBCImpl implements CategorieDAO{
 	private static final String INSERT = "insert into CATEGORIES values (?)";
