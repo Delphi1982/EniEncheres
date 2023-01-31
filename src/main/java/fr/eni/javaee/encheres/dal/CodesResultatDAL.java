@@ -20,11 +20,7 @@ public abstract class CodesResultatDAL {
 	 */
 	public static final int INSERT_AVIS_NOTE_ECHEC=10002;
 
-	public static final int UPDATE_OBJET_ECHEC = 0;
 
-	public static final int DELETE_OBJET_ECHEC = 0;
-
-	public static final int LECTURE_CATEGORIES_ECHEC = 0;
 	
 	
 }
