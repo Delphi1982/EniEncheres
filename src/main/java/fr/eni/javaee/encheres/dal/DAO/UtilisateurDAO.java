@@ -12,6 +12,9 @@ import fr.eni.javaee.encheres.bo.Utilisateur;
 		void update(Utilisateur user);
 
 		public Utilisateur selectbypseudo(String identifiant);
+
+		public Utilisateur getUtilisateurByPseudo(String no_utilisateur, String pseudo, String nom, String prenom, String email, String telephone, String rue,
+				String code_postal, String ville, String mot_de_passe, int credit) throws BusinessException;
+
 		
-		public Utilisateur getUtilisateurByPseudo (String pseudo)throws BusinessException;
 	}

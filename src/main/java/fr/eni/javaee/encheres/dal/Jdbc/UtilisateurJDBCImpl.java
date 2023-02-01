@@ -4,74 +4,65 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
+
+import javax.servlet.http.HttpSession;
 
 import fr.eni.javaee.encheres.BusinessException;
 import fr.eni.javaee.encheres.bo.Utilisateur;
-import fr.eni.javaee.encheres.dal.DAO.UtilisateurDAO;
 import fr.eni.javaee.encheres.dal.CodesResultatDAL;
 import fr.eni.javaee.encheres.dal.ConnectionProvider;
+import fr.eni.javaee.encheres.dal.DAO.UtilisateurDAO;
+
+
 
 public class UtilisateurJDBCImpl implements UtilisateurDAO {
 	private static final String SELECT_BY_PSEUDO = "select no_utilisateur,pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,credit,administrateur "
 			+ "from Utilisateurs where pseudo = ?;";
 
 
-
-	
 private Connection conn;
 	
 	@Override
-	public Utilisateur getUtilisateurByPseudo (String pseudo)throws BusinessException{
-		if(user==null)
-		{
-			BusinessException businessException = new BusinessException();
-//			businessException.ajouterErreur(CodesResultatDAL.?);
-			throw businessException;
-		}
-		
-		try(Connection cnx = ConnectionProvider.getConnection())
-		{
-			try
-			{
-			 PreparedStatement pstmt;
-			 ResultSet rs;
-			 if(user.getPseudo()==null)
-			   { 			
-				 PreparedStatement ps = conn.prepareStatement
-				("INSERT INTO UTILISATEURS (pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,credit,administrateur) "
-				+ "VALUES (?,?,?,?,?,?,?,?,?,?,?)", PreparedStatement.RETURN_GENERATED_KEYS);
-				 ps.setString(1, user.getPseudo());
-				 ps.setString(2, user.getNom());
-				 ps.setString(3, user.getPrenom());
-				 ps.setString(4, user.getEmail());
-				 ps.setString(5, user.getTelephone());
-				 ps.setString(6, user.getRue());
-				 ps.setInt(7, user.getCodePostal());
-				 ps.setString(8, user.getVille());
-				 ps.setString(9, user.getMotDePasse());
-				 ps.setInt(10, user.getCredit());
-				 ps.setString(11, user.getAdministrateur());
+	public Utilisateur getUtilisateurByPseudo (String no_utilisateur, String pseudo, String nom, String prenom, String email, String telephone, String rue, String code_postal, String ville, String mot_de_passe, int credit) throws BusinessException {
+		Utilisateur utilisateur = new Utilisateur();
+		try(Connection cnx = ConnectionProvider.getConnection();
+		PreparedStatement ps = conn.prepareStatement (SELECT_BY_PSEUDO);)
+
+	    { 	
+			 ps.setString (1, no_utilisateur);
+			 ps.setString(1, pseudo);
+			 ps.setString(1, nom);
+			 ps.setString(1, prenom);
+			 ps.setString(1, email);
+			 ps.setString(1, telephone);
+			 ps.setString(1, rue);
+			 ps.setString(1, code_postal);
+			 ps.setString(1, ville);
+			 ps.setString(1, mot_de_passe);
+			 ps.setInt(1, credit);
 			 
-				 ps.executeUpdate();
-				 ResultSet rs = ps.getGeneratedKeys();
+		
+		try (
 			
-			if (rs.next()) 
+			 ResultSet rs = ps.executeQuery())
+		{
+			
+			if(rs.next()) 
 			{
-				user.setNoUtilisateur(rs.getInt(1));
-			}
-			rs.close();
-			ps.close();
+			  utilisateur.setNoUtilisateur(rs.getInt("no_utilisateur"));	
+				}  
+				
 			} 
 			}
 			 catch (SQLException e) 
 		
 		{	e.printStackTrace();
-			cnx.rollback();
-			throw e;
+		BusinessException businessException = new BusinessException();
+//A CREER !!!	businessException.ajouterErreur(CodesResultatDAL.LECTURE_LISTE_ECHEC);
+		throw businessException;
 		}	
-			
-	  } finally 
+	return utilisateur;		
+	  } 
 			
 	
 	
@@ -113,12 +104,22 @@ private Connection conn;
 		}
 	}
 
+
+
+	@Override
+	public void insert(Utilisateur user) throws BusinessException {
+		// TODO Auto-generated method stub
+		
+	}
+
 	@Override
 	public Utilisateur selectbypseudo(String identifiant) {
-		Utilisateur utilisateur = null;
-		
-		return utilisateur;
+		// TODO Auto-generated method stub
+		return null;
 	}
+
+
+
 	
 	
 	
