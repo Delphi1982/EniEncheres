@@ -3,7 +3,7 @@ package fr.eni.javaee.encheres.messages;
 import java.util.ResourceBundle;
 
 
-public abstract class LecteurMessage {
+public class LecteurMessage {
 	private static ResourceBundle rb;
 	
 	static

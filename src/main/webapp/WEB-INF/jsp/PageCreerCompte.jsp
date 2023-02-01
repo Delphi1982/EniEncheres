@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="fr.eni.javaee.encheres.messages.LecteurMessage" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,11 +14,22 @@
 <body>
   <h1 class="center">ENI-enchères</h1>
  
+       	<c:if test="${!empty listeCodeErreur}">
+			<div class="alert alert-danger" role="alert">
+			  <strong>Erreur!</strong>
+			  <ul>
+			  	<c:forEach var="code" items="${listeCodeErreur}">
+			  		<li>${LecteurMessage.getMessageErreur(code)}</li>
+			  	</c:forEach>
+			  </ul>
+			</div>
+		</c:if>
+ 
   <form class="center" method="POST">
     <h2>Mon Profil</h2>
     <div style="display: flex; justify-content: center;">
      <div>
-      <p><label for="Pseudo">Pseudo:</label><input type="text" id="Pseudo" name="Pseudo" ></p>
+      <p><label for="Pseudo">Pseudo:</label><input type="text" id="Pseudo" name="${PARAM_PSEUDO}" ></p>
       <p><label for="Prenom">Prénom:</label><input type="text" id="Prenom" name="Prenom" required></p>
       <p><label for="Telephone">Téléphone:</label><input type="text" id="Telephone" name="Telephone" required></p>
       <p><label for="CodePostal">Code postal:</label><input type="text" id="CodePostal" name="CodePostal" required></p>
