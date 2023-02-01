@@ -12,4 +12,6 @@ import fr.eni.javaee.encheres.bo.Utilisateur;
 		void update(Utilisateur user);
 
 		public Utilisateur selectbypseudo(String identifiant);
+		
+		public Utilisateur getUtilisateurByPseudo (String pseudo)throws BusinessException;
 	}
