@@ -25,7 +25,7 @@ public class ServletCreationCompte extends HttpServlet {
 		// affichage de la page jsp
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/PageCreerCompte.jsp");
 		rd.forward(request, response);
-	}
+	} 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	     String cancelButton = request.getParameter(Constantes.PARAM_CANCEL);
