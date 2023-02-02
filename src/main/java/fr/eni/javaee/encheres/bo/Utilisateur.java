@@ -7,19 +7,19 @@ public class Utilisateur {
 	private String prenom;
 	private String email;
 	private String rue;
-	private int codePostal;
+	private String codePostal;
 	private String ville;
 	private String motDePasse;
 	private String telephone;
 	private int credit;
-	private String administrateur;
+	private Boolean administrateur;
 	
 	public Utilisateur() {
 		super();
 	}
 	
 	public Utilisateur(int noUtilisateur, String pseudo, String nom, String prenom, String email, String rue,
-			int codePostal, String ville, String motDePasse, int credit, String administrateur,String telephone) {
+			String codePostal, String ville, String motDePasse, int credit, Boolean administrateur,String telephone) {
 		super();
 		this.noUtilisateur = noUtilisateur;
 		this.pseudo = pseudo;
@@ -32,21 +32,6 @@ public class Utilisateur {
 		this.motDePasse = motDePasse;
 		this.credit = credit;
 		this.administrateur = administrateur;
-		this.telephone = telephone;
-	}
-	// constructeur pour creer un nouveau compte
-	public Utilisateur(String pseudo, String nom, String prenom, String email, String rue,
-			int codePostal, String ville, String motDePasse, int credit,String telephone) {
-		super();
-		this.pseudo = pseudo;
-		this.nom = nom;
-		this.prenom = prenom;
-		this.email = email;
-		this.rue = rue;
-		this.codePostal = codePostal;
-		this.ville = ville;
-		this.motDePasse = motDePasse;
-		this.credit = credit;
 		this.telephone = telephone;
 	}
 
@@ -106,11 +91,12 @@ public class Utilisateur {
 		this.rue = rue;
 	}
 
-	public int getCodePostal() {
+
+	public String getCodePostal() {
 		return codePostal;
 	}
 
-	public void setCodePostal(int codePostal) {
+	public void setCodePostal(String codePostal) {
 		this.codePostal = codePostal;
 	}
 
@@ -138,14 +124,16 @@ public class Utilisateur {
 		this.credit = credit;
 	}
 
-	public String getAdministrateur() {
+	public Boolean getAdministrateur() {
 		return administrateur;
 	}
 
-	public void setAdministrateur(String administrateur) {
+	public void setAdministrateur(Boolean administrateur) {
 		this.administrateur = administrateur;
 	}
 
+	
+	
 	@Override
 	public String toString() {
 		return "Utilisateur: " + noUtilisateur + ", pseudo: " + pseudo + ", nom: " + nom + ", prenom: "
