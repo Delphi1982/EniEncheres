@@ -30,16 +30,16 @@ private Connection conn;
 
 	    { 	
 			 ps.setString (1, no_utilisateur);
-			 ps.setString(1, pseudo);
-			 ps.setString(1, nom);
-			 ps.setString(1, prenom);
-			 ps.setString(1, email);
-			 ps.setString(1, telephone);
-			 ps.setString(1, rue);
-			 ps.setString(1, code_postal);
-			 ps.setString(1, ville);
-			 ps.setString(1, mot_de_passe);
-			 ps.setInt(1, credit);
+			 ps.setString(2, pseudo);
+			 ps.setString(3, nom);
+			 ps.setString(4, prenom);
+			 ps.setString(5, email);
+			 ps.setString(6, telephone);
+			 ps.setString(7, rue);
+			 ps.setString(8, code_postal);
+			 ps.setString(9, ville);
+			 ps.setString(10, mot_de_passe);
+			 ps.setInt(11, credit);
 			 
 		
 		try (
