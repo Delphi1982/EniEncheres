@@ -16,65 +16,27 @@ import fr.eni.javaee.encheres.bo.Utilisateur;
 
 @WebServlet("/jsp/pageConnexion")
 public class ServletPageConnexion extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-	
+    private static final long serialVersionUID = 1L;
 
     public ServletPageConnexion() {
         super();
     }
 
-
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/pageConnexion.jsp").forward(request, response);
-	}
-
-
-	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		String identifiant = null;
-		String motdepasse = null;
-		Utilisateur userCo = null;
-		
-		identifiant = request.getParameter( "identifiant" );
-		motdepasse = request.getParameter( "mdp" );
-		UtilisateurManager utilisateurManager = new UtilisateurManager();
-		utilisateurManager.seconnecter (identifiant,motdepasse);
-		
-		if (request.getParameter( "identifiant" ).isEmpty() ) {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/pageConnexion.jsp").forward(request, response);
+    }
 
 
-			this.getServletContext().getRequestDispatcher( "/WEB-INF/jsp/pageConnexion.jsp" ).forward( request, response );
-			return;
-		}
-		if (request.getParameter( "mdp" ).isEmpty()) {
-	
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String identifiant = null;
+        String motdepasse = null;
+        Utilisateur userCo = null;
 
-			this.getServletContext().getRequestDispatcher( "/WEB-INF/jsp/pageConnexion.jsp" ).forward( request, response );
-			return; 
-		}
-		if (userCo.getPseudo() == identifiant && userCo.getMotDePasse() == motdepasse ) {
-			 HttpSession session = request.getSession();
-			 String pseudo = request.getParameter("identifiant");
-			 request.getSession().setAttribute("userCo", userCo);
-			 getServletContext().getRequestDispatcher("lien fichier ou url").forward( request, response );
-			 return; 
-		}else {
+        identifiant = request.getParameter( "identifiant" );
+        motdepasse = request.getParameter( "mdp" );
+        UtilisateurManager utilisateurManager = new UtilisateurManager();
+        utilisateurManager.seconnecter (identifiant,motdepasse);
 
-			 getServletContext().getRequestDispatcher("/WEB-INF/jsp/pageConnexion.jsp").forward(request, response);
-			 return; 
-		}  
-		
-	}
-}
-	
+        }
 
-		
-
-
-		
-
-
-		
-
-
+    }

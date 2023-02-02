@@ -9,6 +9,7 @@ import fr.eni.javaee.encheres.dal.Jdbc.UtilisateurJDBCImpl;
 public class DAOFactory {
 	
 	private static ArticleVenduDAO articleVenduDAO;
+	private static CategorieDAO CategorieDAO;
 	
 		
 	public static ArticleVenduDAO getArticleVenduDAO() {
@@ -16,10 +17,6 @@ public class DAOFactory {
             articleVenduDAO = new ArticleVenduJDBCImpl();
         return articleVenduDAO;
     }
-
-	
-	private static CategorieDAO CategorieDAO;
-		
 			
 	public static CategorieDAO getCategorieDAO() {
 	      if (CategorieDAO == null)

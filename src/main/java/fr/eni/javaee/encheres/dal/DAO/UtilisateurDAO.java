@@ -3,15 +3,14 @@ package fr.eni.javaee.encheres.dal.DAO;
 import fr.eni.javaee.encheres.BusinessException;
 import fr.eni.javaee.encheres.bo.Utilisateur;
 
-	public interface UtilisateurDAO {
+public interface UtilisateurDAO {
 
-		public void insert(Utilisateur user)throws BusinessException;
-		
-		public void delete(int id)throws BusinessException;
+    public void insert(Utilisateur user)throws BusinessException;
 
-		void update(Utilisateur user);
+    public void delete(int id)throws BusinessException;
 
-		public Utilisateur selectbypseudo(String identifiant);
-		
-		public Utilisateur getUtilisateurByPseudo (String pseudo)throws BusinessException;
-	}
+    void update(Utilisateur user);
+
+    public void getUtilisateurByPseudo(String pseudo, String mot_de_passe) throws BusinessException;
+
+}
