@@ -16,13 +16,12 @@ public class ServletNavbar extends HttpServlet {
 
     public ServletNavbar() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		  if (session.getAttribute("user") == null) {
-		    try {
+		    try {// fermeture de la session et redirection vers la servlet pageaccueil
 		      session.invalidate();
 		      response.sendRedirect("PageAccueil");
 		    } catch (IOException e) {

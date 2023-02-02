@@ -14,7 +14,9 @@ public class UtilisateurManager {
 	}
 
 	public void seconnecter(String identifiant, String motdepasse) {
-		Utilisateur utilisateur = utilisateurDao.selectbypseudo (identifiant);
+		Utilisateur utilisateur = utilisateurDao.getUtilisateurByPseudo(identifiant);
+ 		DAOFactory factory = new DAOFactory();
+ 		UtilisateurDAO utilisateurDAO = factory.getUtilisateurByPseudo(identifiant,motdepasse);
 	}
 	
 	public void creerCompte(Utilisateur newUser) throws BusinessException{
@@ -28,7 +30,7 @@ public class UtilisateurManager {
 	 	}	
 	 	if (newUser.getNom().trim()==null 
 	 		|| newUser.getNom().length()>30 
-	 		|| !newUser.getNom().matches("[a-zA-Z0-9]+")) {
+	 		|| !newUser.getNom().matches("[a-zA-Z0-9 ]+")) {
 	 	exception.ajouterErreur(CodesResultatBLL.NOM_KO);
 	 	}	
 	 	if (newUser.getPrenom().trim()==null 
@@ -37,7 +39,8 @@ public class UtilisateurManager {
 	 	exception.ajouterErreur(CodesResultatBLL.PRENOM_KO);
 	 	}	// controle champ : vide OU trop long
 	 	if (newUser.getEmail().trim()==null 
-	 		|| newUser.getEmail().length()>20) {
+	 			// TODO : CHANGER VARCHAR BDD EMAIL
+	 		|| newUser.getEmail().length()>100) {
 	 	exception.ajouterErreur(CodesResultatBLL.EMAIL_KO);
 	 	}
 	 	if (newUser.getTelephone().trim()==null 
@@ -47,7 +50,7 @@ public class UtilisateurManager {
 	 	}
 	 	if (newUser.getRue().trim()==null 
 	 		|| newUser.getRue().length()>30
-	 		|| !newUser.getRue().matches("[a-zA-Z0-9]+")) {
+	 		|| !newUser.getRue().matches("[a-zA-Z0-9 ]+")) {
 	 	exception.ajouterErreur(CodesResultatBLL.RUE_KO);
 	 	}	// controle champ : cast int en String PUIS : vide OU trop long OU different d'un entier 
 	 	if (newUser.getCodePostal()<10000 
@@ -65,7 +68,7 @@ public class UtilisateurManager {
 	 		|| !newUser.getMotDePasse().matches(".*[!@#$%^&*(),.?\":{}|<>]+.*")) {
 	 	 exception.ajouterErreur(CodesResultatBLL.MOT_DE_PASSE_KO);
 	 	}
-	 	
+	 
 	 	if (exception.hasErreurs()) throw exception;
 	 	// valider l'insertion des données en BDD ici (APPEL A LA DAL)
 	 	try {

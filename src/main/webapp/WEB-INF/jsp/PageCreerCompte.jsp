@@ -29,13 +29,12 @@
     <h2>Mon Profil</h2>
     <div style="display: flex; justify-content: center;">
      <div>
-      <p><label for="Pseudo">Pseudo:</label><input type="text" id="Pseudo" name="${PARAM_PSEUDO}" ></p>
+      <p><label for="Pseudo">Pseudo:</label><input type="text" id="Pseudo" name="Pseudo" ></p>
       <p><label for="Prenom">Prénom:</label><input type="text" id="Prenom" name="Prenom" required></p>
       <p><label for="Telephone">Téléphone:</label><input type="text" id="Telephone" name="Telephone" required></p>
       <p><label for="CodePostal">Code postal:</label><input type="text" id="CodePostal" name="CodePostal" required></p>
       <p><label for="MotDePasse">Mot de passe:</label><input type="password" id="MotDePasse" name="MotDePasse" required></p>
      </div>
-     <div>
       <p><label for="Nom">Nom:</label><input type="text" id="Nom" name="Nom" required></p>
       <p><label for="Email">Email:</label><input type="email" id="Email" name="Email" required></p>
       <p><label for="Rue">Rue:</label><input type="text" id="Rue" name="Rue" required></p>

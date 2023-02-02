@@ -13,8 +13,6 @@ import fr.eni.javaee.encheres.BusinessException;
 import fr.eni.javaee.encheres.Constantes;
 import fr.eni.javaee.encheres.bll.UtilisateurManager;
 import fr.eni.javaee.encheres.bo.Utilisateur;
-import fr.eni.javaee.encheres.dal.DAO.DAOFactory;
-import fr.eni.javaee.encheres.dal.DAO.UtilisateurDAO;
 
 @WebServlet("/encheres/messages/ServletCreationCompte")
 public class ServletCreationCompte extends HttpServlet {
@@ -25,14 +23,14 @@ public class ServletCreationCompte extends HttpServlet {
 		// affichage de la page jsp
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/PageCreerCompte.jsp");
 		rd.forward(request, response);
-	} 
+	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	     String cancelButton = request.getParameter(Constantes.PARAM_CANCEL);
 	     String submitButton = request.getParameter(Constantes.PARAM_SUBMIT);
-
-	     if (cancelButton != null) {
-	         response.sendRedirect("NOM DE LA JSP : ACCUEIL.JSP A METTRE ICI  !!(OU URL)");
+	     String cancelButton = request.getParameter(Constantes.PARAM_CANCEL);
+	     
+	     if (cancelButton != null) { // TODO : la redirection pageAccueil depuis creer profil marche pas 
+	         response.sendRedirect("/PageAccueil.jsp");
 	         return;
 	     }
 	     
@@ -60,7 +58,7 @@ public class ServletCreationCompte extends HttpServlet {
 	         utilisateurManager.creerCompte(newUserBO);
 	     } catch (BusinessException e) {
 	         request.setAttribute("listeCodeErreur", e.getListeCodesErreur());
-	         request.getRequestDispatcher("/WEB-INF/jsp/PageCreerCompte.jsp").forward(request, response);
+	         request.getRequestDispatcher("/WEB-INF/jsp/PageAccueil.jsp").forward(request, response);
 	     }
 	  }
 	}
