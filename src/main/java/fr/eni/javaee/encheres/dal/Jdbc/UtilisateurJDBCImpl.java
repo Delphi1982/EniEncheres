@@ -16,31 +16,20 @@ import fr.eni.javaee.encheres.dal.DAO.UtilisateurDAO;
 
 
 public class UtilisateurJDBCImpl implements UtilisateurDAO {
-	private static final String SELECT_BY_PSEUDO = "select no_utilisateur,pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,credit,administrateur "
+	private static final String SELECT_BY_PSEUDO = "select no_utilisateur,pseudo,nom,prenom,email,telephone,rue,"
+			+ "code_postal,ville,mot_de_passe,credit,administrateur "
 			+ "from Utilisateurs where pseudo = ?;";
 
 
 private Connection conn;
 	
 	@Override
-	public Utilisateur getUtilisateurByPseudo (String no_utilisateur, String pseudo, String nom, String prenom, String email, String telephone, String rue, String code_postal, String ville, String mot_de_passe, int credit) throws BusinessException {
+	public void getUtilisateurByPseudo (String pseudo, String mot_de_passe) throws BusinessException {
 		Utilisateur utilisateur = new Utilisateur();
 		try(Connection cnx = ConnectionProvider.getConnection();
 		PreparedStatement ps = conn.prepareStatement (SELECT_BY_PSEUDO);)
-
 	    { 	
-			 ps.setString (1, no_utilisateur);
-			 ps.setString(1, pseudo);
-			 ps.setString(1, nom);
-			 ps.setString(1, prenom);
-			 ps.setString(1, email);
-			 ps.setString(1, telephone);
-			 ps.setString(1, rue);
-			 ps.setString(1, code_postal);
-			 ps.setString(1, ville);
-			 ps.setString(1, mot_de_passe);
-			 ps.setInt(1, credit);
-			 
+			ps.setString("");
 		try (
 			 ResultSet rs = ps.executeQuery())
 		{
@@ -53,11 +42,12 @@ private Connection conn;
 			 catch (SQLException e) 
 		{	e.printStackTrace();
 		BusinessException businessException = new BusinessException();
-		//A CREER !!!	businessException.ajouterErreur(CodesResultatDAL.LECTURE_LISTE_ECHEC);
+//A CREER !!!	businessException.ajouterErreur(CodesResultatDAL.LECTURE_LISTE_ECHEC);
 		throw businessException;
 		}	
 	return utilisateur;		
 	  } 
+
 			
  
 	@Override
@@ -148,16 +138,4 @@ private Connection conn;
 		}
 	}
 
-
-	@Override
-	public Utilisateur selectbypseudo(String identifiant) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-
-	
-	
-	
 }

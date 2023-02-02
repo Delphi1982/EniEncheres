@@ -14,7 +14,9 @@ public class UtilisateurManager {
 	}
 
 	public void seconnecter(String identifiant, String motdepasse) {
-		Utilisateur utilisateur = utilisateurDao.selectbypseudo (identifiant);
+		Utilisateur utilisateur = utilisateurDao.getUtilisateurByPseudo(identifiant);
+ 		DAOFactory factory = new DAOFactory();
+ 		UtilisateurDAO utilisateurDAO = factory.getUtilisateurByPseudo(identifiant,motdepasse);
 	}
 	
 	public void creerCompte(Utilisateur newUser) throws BusinessException{
