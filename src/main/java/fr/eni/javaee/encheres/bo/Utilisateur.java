@@ -34,6 +34,23 @@ public class Utilisateur {
 		this.administrateur = administrateur;
 		this.telephone = telephone;
 	}
+	
+	// constructeur pour creer un nouveau compte
+    public Utilisateur(String pseudo, String nom, String prenom, String email, String rue,
+            String codePostal, String ville, String motDePasse, int credit,String telephone) {
+        super();
+        this.pseudo = pseudo;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.email = email;
+        this.rue = rue;
+        this.codePostal = codePostal;
+        this.ville = ville;
+        this.motDePasse = motDePasse;
+        this.credit = credit;
+        this.telephone = telephone;
+    }
+
 
 	public String getTelephone() {
 		return telephone;

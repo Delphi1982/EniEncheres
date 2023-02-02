@@ -16,5 +16,6 @@ public abstract class CodesResultatBLL {
 	public static final int CODEPOSTAL_KO = 20008;
 	public static final int VILLE_KO = 20009;
 	public static final int MOT_DE_PASSE_KO = 20010;
+	public static final int CONNEXION_KO = 20011;
 	
 }

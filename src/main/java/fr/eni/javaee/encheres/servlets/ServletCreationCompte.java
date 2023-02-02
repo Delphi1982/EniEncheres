@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import fr.eni.javaee.encheres.BusinessException;
-import fr.eni.javaee.encheres.Constantes;
 import fr.eni.javaee.encheres.bll.UtilisateurManager;
 import fr.eni.javaee.encheres.bo.Utilisateur;
 
@@ -26,33 +25,27 @@ public class ServletCreationCompte extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	     String submitButton = request.getParameter(Constantes.PARAM_SUBMIT);
-	     String cancelButton = request.getParameter(Constantes.PARAM_CANCEL);
-	     
+	     String submitButton = request.getParameter("submit");
+	     String cancelButton = request.getParameter("cancel");
+	  
 	     if (cancelButton != null) { // TODO : la redirection pageAccueil depuis creer profil marche pas 
 	         response.sendRedirect("/PageAccueil.jsp");
 	         return;
 	     }
-	     
+	  
 	     if (submitButton != null) {
-	     String Pseudo = request.getParameter(Constantes.PARAM_PSEUDO);
-	     String Prenom = request.getParameter(Constantes.PARAM_PRENOM);
-	     String Telephone = request.getParameter(Constantes.PARAM_TELEPHONE);
-	     int CodePostalInt = 0;
-	     String CodePostal = request.getParameter(Constantes.PARAM_CODE_POSTAL);
-	     try {
-	         CodePostalInt = Integer.valueOf(CodePostal.trim());
-	     } catch (NumberFormatException e) {
-	    	 CodePostalInt=0;
-	     }
-	     String MotDePasse = request.getParameter(Constantes.PARAM_MOT_DE_PASSE);
-	     String Nom = request.getParameter(Constantes.PARAM_NOM);
-	     String Email = request.getParameter(Constantes.PARAM_EMAIL);
-	     String Rue = request.getParameter(Constantes.PARAM_RUE);
-	     String Ville = request.getParameter(Constantes.PARAM_VILLE);
-	     int Credit = (00000);
+	     String Pseudo = request.getParameter("Pseudo");
+	     String Prenom = request.getParameter("Prenom");
+	     String Telephone = request.getParameter("Telephone");
+	     String CodePostal = request.getParameter("CodePostal");
+	     String MotDePasse = request.getParameter("MotDePasse");
+	     String Nom = request.getParameter("Nom");
+	     String Email = request.getParameter("Email");
+	     String Rue = request.getParameter("Rue");
+	     String Ville = request.getParameter("Ville");
+	     int Credit = (0);
 	     // instanciation BO + BLL
-	     Utilisateur newUserBO = new Utilisateur(Pseudo, Nom, Prenom, Email, Rue, CodePostalInt, Ville, MotDePasse, Credit, Telephone);
+	     Utilisateur newUserBO = new Utilisateur(Pseudo, Nom, Prenom, Email, Rue, CodePostal, Ville, MotDePasse, Credit, Telephone);
 	     UtilisateurManager utilisateurManager = new UtilisateurManager();
 	     try { // essai d'insertion des donnees en BDD 
 	         utilisateurManager.creerCompte(newUserBO);
