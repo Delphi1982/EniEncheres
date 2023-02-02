@@ -59,7 +59,7 @@ private Connection conn;
 	return utilisateur;		
 	  } 
 			
-
+ 
 	@Override
 	public void insert(Utilisateur user) throws BusinessException {
 		Connection cnx = null;
