@@ -20,19 +20,13 @@ public class UtilisateurJDBCImpl implements UtilisateurDAO {
 	@Override
 
 	public Utilisateur getUtilisateurByPseudo(String pseudo) throws BusinessException {
-
 		Utilisateur utilisateur = new Utilisateur();
-
 		try (Connection cnx = ConnectionProvider.getConnection();
 				PreparedStatement ps = conn.prepareStatement(SELECT_BY_PSEUDO);)
-
 		{
-
 			ps.setString(1, pseudo);
-
 			try (
 					ResultSet rs = ps.executeQuery()) {
-
 				if (rs.next()) {
 					utilisateur.setNoUtilisateur(rs.getInt("no_utilisateur"));
 					utilisateur.setPseudo(rs.getString("pseudo"));
@@ -46,19 +40,13 @@ public class UtilisateurJDBCImpl implements UtilisateurDAO {
 					utilisateur.setMotDePasse(rs.getString("mot_de_passe"));
 					utilisateur.setCredit(rs.getInt("credit"));
 					utilisateur.setAdministrateur(rs.getBoolean("administrateur"));
-
 				}
-
 			}
-
 		} catch (SQLException e)
-
 		{
 			e.printStackTrace();
 			BusinessException businessException = new BusinessException();
-
 //A CREER !!!	businessException.ajouterErreur(CodesResultatDAL.LECTURE_LISTE_ECHEC);
-
 		throw businessException;
 		}	
 	return utilisateur;		
@@ -116,25 +104,36 @@ public class UtilisateurJDBCImpl implements UtilisateurDAO {
 		}
 	}
 	
-	@Override 
+	
+	@Override // suppression en cascade de l'utilisateur et de ses informations dans les tables associées
 	public void delete(int noId)throws BusinessException{
-
+		Connection cnx = null;
+		BusinessException businessException = new BusinessException();
 		try {
-			PreparedStatement ps = conn.prepareStatement("DELETE FROM UTILISATEURS WHERE idArticle = ?");
+			cnx = ConnectionProvider.getConnection();
+			PreparedStatement ps = conn.prepareStatement("DELETE FROM UTILISATEURS WHERE idArticle = ? ON DELETE CASCADE");
 			ps.setInt(1, noId);
 			ps.executeUpdate();
+			} catch (SQLException e) {
+				e.printStackTrace();
+				businessException.ajouterErreur(1);
+				throw businessException;
+			}
+		try {
+			cnx.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
+			businessException.ajouterErreur(2);
+			throw businessException;
 		}
 	}
 
-	@Override
-	public void update(Utilisateur user) {
+	@Override // maj données utilisateurs en bdd
+	public void update(Utilisateur user,int noId) {
 		try {
 			PreparedStatement ps = conn
 					.prepareStatement("UPDATE UTILISATEURS SET " + "pseudo = ?, nom = ?, prenom = ?, email = ?,"
-							+ "telephone = ?, rue = ?, code_postal = ?, ville = ?"
-							+ "mot_de_passe = ?, credit = ?, administrateur = ?" + "WHERE idArticle = ?");
+							+ "telephone = ?, rue = ?, code_postal = ?, ville = ? mot_de_passe = ? WHERE idArticle = ?");
 			ps.setString(1, user.getPseudo());
 			ps.setString(2, user.getNom());
 			ps.setString(3, user.getPrenom());
@@ -145,17 +144,13 @@ public class UtilisateurJDBCImpl implements UtilisateurDAO {
 			ps.setString(8, user.getVille());
 			ps.setString(9, user.getMotDePasse());
 			ps.setInt(10, user.getCredit());
-			ps.setBoolean(11, user.getAdministrateur());
-
+			
 			ps.executeUpdate();
 
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
-
-
-	
 
 	@Override
 	public Utilisateur selectbypseudo(String identifiant) {

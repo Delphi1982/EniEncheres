@@ -27,13 +27,7 @@ public class ServletCreationCompte extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	     String submitButton = request.getParameter("submit");
 	     String cancelButton = request.getParameter("cancel");
-	  
-	     if (cancelButton != null) { // TODO : la redirection pageAccueil depuis creer profil marche pas 
-	         response.sendRedirect("/PageAccueil.jsp");
-	         return;
-	     }
-	  
-	     if (submitButton != null) {
+	     
 	     String Pseudo = request.getParameter("Pseudo");
 	     String Prenom = request.getParameter("Prenom");
 	     String Telephone = request.getParameter("Telephone");
@@ -44,15 +38,20 @@ public class ServletCreationCompte extends HttpServlet {
 	     String Rue = request.getParameter("Rue");
 	     String Ville = request.getParameter("Ville");
 	     int Credit = (0);
-	     // instanciation BO + BLL
-	     Utilisateur newUserBO = new Utilisateur(Pseudo, Nom, Prenom, Email, Rue, CodePostal, Ville, MotDePasse, Credit, Telephone);
-	     UtilisateurManager utilisateurManager = new UtilisateurManager();
-	     try { // essai d'insertion des donnees en BDD 
-	         utilisateurManager.creerCompte(newUserBO);
-	     } catch (BusinessException e) {
-	         request.setAttribute("listeCodeErreur", e.getListeCodesErreur());
-	         request.getRequestDispatcher("/WEB-INF/jsp/PageAccueil.jsp").forward(request, response);
+	  
+	     if (cancelButton != null) { // TODO : la redirection pageAccueil depuis creer profil marche pas 
+	         response.sendRedirect("/PageAccueil.jsp");
 	     }
-	  }
+	  
+	     if (submitButton != null) {
+	    	 Utilisateur newUserBO = new Utilisateur(Pseudo, Nom, Prenom, Email, Rue, CodePostal, Ville, MotDePasse, Credit, Telephone);
+	    	 UtilisateurManager utilisateurManager = new UtilisateurManager();
+	    	 try { // essai d'insertion des donnees en BDD 
+	    		 utilisateurManager.creerCompte(newUserBO);
+	    	 } catch (BusinessException e) {
+	    		 request.setAttribute("listeCodeErreur", e.getListeCodesErreur());
+	    		 request.getRequestDispatcher("/WEB-INF/jsp/PageAccueil.jsp").forward(request, response);
+	    	 }
+	     }  
 	}
 }

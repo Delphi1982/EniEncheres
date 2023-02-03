@@ -9,12 +9,10 @@ public interface UtilisateurDAO {
 
     public void delete(int id)throws BusinessException;
 
-		public Utilisateur getUtilisateurByPseudo(String pseudo) throws BusinessException;
+    public Utilisateur getUtilisateurByPseudo(String pseudo) throws BusinessException;
 
-		public Utilisateur selectbypseudo(String identifiant);
+    public Utilisateur selectbypseudo(String identifiant);
 
-    void update(Utilisateur user);
+    public void update(Utilisateur user, int noId);
 
-		
-	}
-
+    }
