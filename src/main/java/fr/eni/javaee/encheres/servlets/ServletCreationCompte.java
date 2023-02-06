@@ -19,39 +19,37 @@ public class ServletCreationCompte extends HttpServlet {
 	
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// affichage de la page jsp
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/PageCreerCompte.jsp");
-		rd.forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/jsp/PageCreerCompte.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	     String submitButton = request.getParameter("submit");
-	     String cancelButton = request.getParameter("cancel");
-	     
-	     String Pseudo = request.getParameter("Pseudo");
-	     String Prenom = request.getParameter("Prenom");
-	     String Telephone = request.getParameter("Telephone");
-	     String CodePostal = request.getParameter("CodePostal");
-	     String MotDePasse = request.getParameter("MotDePasse");
-	     String Nom = request.getParameter("Nom");
-	     String Email = request.getParameter("Email");
-	     String Rue = request.getParameter("Rue");
-	     String Ville = request.getParameter("Ville");
-	     int Credit = (0);
-	  
-	     if (cancelButton != null) { // TODO : la redirection pageAccueil depuis creer profil marche pas 
-	         response.sendRedirect("/PageAccueil.jsp");
-	     }
-	  
-	     if (submitButton != null) {
-	    	 Utilisateur newUserBO = new Utilisateur(Pseudo, Nom, Prenom, Email, Rue, CodePostal, Ville, MotDePasse, Credit, Telephone);
-	    	 UtilisateurManager utilisateurManager = new UtilisateurManager();
-	    	 try { // essai d'insertion des donnees en BDD 
-	    		 utilisateurManager.creerCompte(newUserBO);
-	    	 } catch (BusinessException e) {
-	    		 request.setAttribute("listeCodeErreur", e.getListeCodesErreur());
-	    		 request.getRequestDispatcher("/WEB-INF/jsp/PageAccueil.jsp").forward(request, response);
-	    	 }
-	     }  
+		String submitButton = request.getParameter("submit");
+		String cancelButton = request.getParameter("cancel");
+
+		String Pseudo = request.getParameter("Pseudo");
+		String Prenom = request.getParameter("Prenom");
+		String Telephone = request.getParameter("Telephone");
+		String CodePostal = request.getParameter("CodePostal");
+		String MotDePasse = request.getParameter("MotDePasse");
+		String Nom = request.getParameter("Nom");
+		String Email = request.getParameter("Email");
+		String Rue = request.getParameter("Rue");
+		String Ville = request.getParameter("Ville");
+		int Credit = (0);
+
+		if (cancelButton != null) { // TODO : la redirection pageAccueil depuis creer profil marche pas 
+			response.sendRedirect("/PageAccueil.jsp");
+		}
+
+		if (submitButton != null) {
+			Utilisateur newUserBO = new Utilisateur(Pseudo, Prenom, Telephone, CodePostal,MotDePasse,Nom,Email,Rue,Credit,Ville);
+			UtilisateurManager utilisateurManager = new UtilisateurManager();
+			try { // essai d'insertion des donnees en BDD 
+				utilisateurManager.creerCompte(newUserBO);
+			} catch (BusinessException e) {
+				request.setAttribute("listeCodeErreur", e.getListeCodesErreur());
+				request.getRequestDispatcher("/WEB-INF/jsp/PageAccueil.jsp").forward(request, response);
+			}
+		}
 	}
 }

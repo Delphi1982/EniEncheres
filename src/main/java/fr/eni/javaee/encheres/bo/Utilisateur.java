@@ -1,5 +1,7 @@
 package fr.eni.javaee.encheres.bo;
 
+import javax.servlet.http.HttpServletRequest;
+
 public class Utilisateur {
 	private int noUtilisateur;
 	private String pseudo;
@@ -33,24 +35,23 @@ public class Utilisateur {
 		this.credit = credit;
 		this.administrateur = administrateur;
 		this.telephone = telephone;
+		this.credit = credit;
 	}
-	
-	// constructeur pour creer un nouveau compte
-    public Utilisateur(String pseudo, String nom, String prenom, String email, String rue,
-            String codePostal, String ville, String motDePasse, int credit,String telephone) {
-        super();
-        this.pseudo = pseudo;
-        this.nom = nom;
-        this.prenom = prenom;
-        this.email = email;
-        this.rue = rue;
-        this.codePostal = codePostal;
-        this.ville = ville;
-        this.motDePasse = motDePasse;
-        this.credit = credit;
-        this.telephone = telephone;
-    }
 
+	// constructeur pour creer un nouveau compte
+	public Utilisateur(String pseudo,String nom,String prenom,String email,String rue,String codePostal,String ville,String motDePasse,int credit,String telephone) {
+		int Credit = (0);
+		this.pseudo = pseudo;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.email = email;
+		this.rue = rue;
+		this.codePostal = codePostal;
+		this.ville = ville;
+		this.motDePasse = motDePasse;
+		this.credit = credit;
+		this.telephone = telephone;
+	}
 
 	public String getTelephone() {
 		return telephone;

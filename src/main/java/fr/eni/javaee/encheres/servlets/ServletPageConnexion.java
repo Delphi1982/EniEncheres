@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import fr.eni.javaee.encheres.BusinessException;
 import fr.eni.javaee.encheres.bll.UtilisateurManager;
 import fr.eni.javaee.encheres.bo.Utilisateur;
 
@@ -35,7 +36,12 @@ public class ServletPageConnexion extends HttpServlet {
         identifiant = request.getParameter( "identifiant" );
         motdepasse = request.getParameter( "mdp" );
         UtilisateurManager utilisateurManager = new UtilisateurManager();
-        utilisateurManager.seconnecter (identifiant,motdepasse);
+        try {
+			utilisateurManager.seconnecter (identifiant,motdepasse);
+		} catch (BusinessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
         }
 
