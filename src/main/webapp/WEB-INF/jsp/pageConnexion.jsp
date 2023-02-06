@@ -1,5 +1,11 @@
+<%@ page pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+<%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
+
+
 <!doctype html>
 <html lang="fr">
+
 
 <head>
   <meta charset="utf-8">
@@ -9,15 +15,19 @@
   <link rel="stylesheet" href="../css/normalize.css">
   <link rel="stylesheet" href="../css/pageConnexion.css">
 
-    <title>ENI-Enchères</title>
+    <title>ENI-EnchÃ¨res</title>
     
 </head>
 
 <body>
-
-    <h1>ENI-Enchères</h1>
+	<c:if test="${!empty sessionScope.identifiant &&!empty sessionScope.motdepasse}">
+		<a href="ServletPageConnexion.java"></a>
+	</c:if>
+	
+	
+    <h1>ENI-EnchÃ¨res</h1>
     
-    <form class="form-connect">
+    <form class="form-connect" action="ServletPageConnexion.java" method="post">
     
     	<div class="id">	
         	<label class="label-id" for="identifiant">Identifiant </label>
@@ -30,9 +40,9 @@
         </div>
        
        
-        <div class="box-conn-rem">
+      
         	<div class="box-conn">
-        		<input class="conn" type="submit" value="Connexion">
+        		<input class="conn" type="submit" value="Connexion" onclick="location.href='ServletPageConnexion.java'">
         	</div>
        
         	<div class="box-rem">
@@ -41,21 +51,18 @@
         			<label for="remember">Se souvenir de moi</label>
         		</div>
         		<div class="rem-href">
-        			<a href="#">Mot de passe oublié ?</a>
+        			<a href="#">Mot de passe oubliÃ©</a>
         		</div>
         	
         	</div>
-        
-        </div>
-        
-        
-        
-        
-        <div>
-        <input class="crea" type="button" value="Créer un compte">
-        </div>
-  
-    </form>
+
+			<div class="crea">
+        		<input class="conn" type="submit" value="CrÃ©er compte" onclick="location.href=ServletCreationCompte.java">
+        	</div>
+        	
+		
+			
+	</form>
     
 </body>
 
