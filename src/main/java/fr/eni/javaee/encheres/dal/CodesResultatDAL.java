@@ -20,6 +20,8 @@ public abstract class CodesResultatDAL {
 	 */
 	public static final int INSERT_AVIS_NOTE_ECHEC=10002;
 
+	public static final int LECTURE_LISTES_ECHEC = 10003;
+
 
 	
 	

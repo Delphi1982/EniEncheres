@@ -1,98 +1,148 @@
 package fr.eni.javaee.encheres.bo;
 
-import java.sql.Date;
+import java.time.LocalDate;
 
 public class ArticleVendu {
 	private int noArticle;
 	private String nomArticle;
 	private String description;
-	private Date dateDebutEncheres;
-	private Date dateFinEncheres;
+	private LocalDate debutEncheres;
+	private LocalDate finEncheres;
 	private int miseAPrix;
 	private int prixVente;
 	private String etatVente;
+	private int noUtilisateur;
+	private int noCategorie;
 	
-	public ArticleVendu() {
-		super();
-	}
 
-	public ArticleVendu(int noArticle, String nomArticle, String description, Date dateDebutEncheres, Date dateFinEncheres) {
-		super();
-		this.noArticle = noArticle;
-		this.nomArticle = nomArticle;
-		this.description = description;
-		this.dateDebutEncheres = dateDebutEncheres;
-		this.dateFinEncheres = dateFinEncheres;
-	}
 
-	public int getNoArticle() {
-		return noArticle;
-	}
 
-	public void setNoArticle(int noArticle) {
-		this.noArticle = noArticle;
-	}
+// Constructeur Methode SELECT_ALL, SELECT_BY_ID
+public ArticleVendu(String nomArticle, int noArticle, String description, 
+					int noCategorie, int miseAPrix,
+					LocalDate finEncheres,
+					int noUtilisateur) {
+	
+	this.noArticle = noArticle;
+	this.nomArticle = nomArticle;
+	this.description = description;
+	this.finEncheres = finEncheres;
+	this.miseAPrix = miseAPrix;
+	this.noUtilisateur = noUtilisateur;
+	this.noCategorie = noCategorie;
+}
 
-	public String getNomArticle() {
-		return nomArticle;
-	}
+// Constructeur INSERT_ARTICLES_VENDUS
 
-	public void setNomArticle(String nomArticle) {
-		this.nomArticle = nomArticle;
-	}
 
-	public String getDescription() {
-		return description;
-	}
+public ArticleVendu(String nomArticle, String description, 
+		int noCategorie, int miseAPrix,
+		LocalDate debutEncheres,LocalDate finEncheres) {
+	this.nomArticle = nomArticle;
+	this.description = description;
+	this.finEncheres = finEncheres;
+	this.debutEncheres =debutEncheres;
+	this.miseAPrix = miseAPrix;
+	this.noCategorie = noCategorie;
+}
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+public int getNoArticle() {
+	return noArticle;
+}
 
-	public Date getDateDebutEncheres() {
-		return dateDebutEncheres;
-	}
+public void setNoArticle(int noArticle) {
+	this.noArticle = noArticle;
+}
 
-	public void setDateDebutEncheres(Date dateDebutEncheres) {
-		this.dateDebutEncheres = dateDebutEncheres;
-	}
+public String getNomArticle() {
+	return nomArticle;
+}
 
-	public Date getDateFinEncheres() {
-		return dateFinEncheres;
-	}
+public void setNomArticle(String nomArticle) {
+	this.nomArticle = nomArticle;
+}
 
-	public void setDateFinEncheres(Date dateFinEncheres) {
-		this.dateFinEncheres = dateFinEncheres;
-	}
+public String getDescription() {
+	return description;
+}
 
-	public int getMiseAPrix() {
-		return miseAPrix;
-	}
+public void setDescription(String description) {
+	this.description = description;
+}
 
-	public void setMiseAPrix(int miseAPrix) {
-		this.miseAPrix = miseAPrix;
-	}
+public LocalDate getDebutEncheres() {
+	return debutEncheres;
+}
 
-	public int getPrixVente() {
-		return prixVente;
-	}
+public void setDebutEncheres(LocalDate debutEncheres) {
+	this.debutEncheres = debutEncheres;
+}
 
-	public void setPrixVente(int prixVente) {
-		this.prixVente = prixVente;
-	}
+public LocalDate getFinEncheres() {
+	return finEncheres;
+}
 
-	public String getEtatVente() {
-		return etatVente;
-	}
+public void setFinEncheres(LocalDate finEncheres) {
+	this.finEncheres = finEncheres;
+}
 
-	public void setEtatVente(String etatVente) {
-		this.etatVente = etatVente;
-	}
+public int getMiseAPrix() {
+	return miseAPrix;
+}
 
-	@Override
-	public String toString() {
-		return "ArticleVendu: " + noArticle + ", nomArticle: " + nomArticle + ", description: " + description
-				+ ", dateDebutEncheres: " + dateDebutEncheres + ", dateFinEncheres: " + dateFinEncheres + ", miseAPrix: "
-				+ miseAPrix + ", prixVente: " + prixVente + ", etatVente: " + etatVente;
+public void setMiseAPrix(int miseAPrix) {
+	this.miseAPrix = miseAPrix;
+}
+
+public int getPrixVente() {
+	return prixVente;
+}
+
+public void setPrixVente(int prixVente) {
+	this.prixVente = prixVente;
+}
+
+public String getEtatVente () {
+	return etatVente;
+}
+
+public void setEtatVente (String etatVente) {
+	this.etatVente = etatVente;
+}
+
+public int getNoUtilisateur() {
+    return noUtilisateur;
+}
+
+public void setNoUtilisateur(int noUtilisateur) {
+    this.noUtilisateur = noUtilisateur;
+}
+
+public int getNoCategorie() {
+    return noCategorie;
+}
+
+public void setNoCategorie(int noCategorie) {
+    this.noCategorie = noCategorie;
+}
+
+public ArticleVendu() {
+	super();
+}
+
+public String toString() {
+	return "ArticleVendu{" +
+			"noArticle=" + noArticle +
+			", nomArticle=" + nomArticle +
+			", description=" + description +
+			", debutEncheres" + debutEncheres +
+			", finEncheres=" + finEncheres +
+			", miseAPrix=" + miseAPrix +
+			", prixVente=" + prixVente +
+			", etatVente=" + etatVente +
+			"' noUtilisateur=" + noUtilisateur +
+			", noCategorie=" + noCategorie +
+			"}";
+			
 	}
 }
