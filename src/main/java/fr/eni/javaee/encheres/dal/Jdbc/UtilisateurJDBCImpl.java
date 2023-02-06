@@ -7,6 +7,7 @@ import java.sql.SQLException;
 
 import fr.eni.javaee.encheres.BusinessException;
 import fr.eni.javaee.encheres.bo.Utilisateur;
+import fr.eni.javaee.encheres.dal.CodesResultatDAL;
 import fr.eni.javaee.encheres.dal.ConnectionProvider;
 import fr.eni.javaee.encheres.dal.DAO.UtilisateurDAO;
 
@@ -46,7 +47,7 @@ public class UtilisateurJDBCImpl implements UtilisateurDAO {
 		{
 			e.printStackTrace();
 			BusinessException businessException = new BusinessException();
-//A CREER !!!	businessException.ajouterErreur(CodesResultatDAL.LECTURE_LISTE_ECHEC);
+			businessException.ajouterErreur(CodesResultatDAL.LECTURE_LISTES_ECHEC);
 		throw businessException;
 		}	
 	return utilisateur;		

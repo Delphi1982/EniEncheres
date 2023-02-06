@@ -2,6 +2,7 @@ package fr.eni.javaee.encheres.servlets;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,34 +10,63 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import fr.eni.javaee.encheres.BusinessException;
 import fr.eni.javaee.encheres.bll.UtilisateurManager;
 import fr.eni.javaee.encheres.bo.Utilisateur;
 
 
 
-@WebServlet("/jsp/pageConnexion")
+@WebServlet("/pageConnexion")
 public class ServletPageConnexion extends HttpServlet {
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
+
 
     public ServletPageConnexion() {
         super();
     }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/pageConnexion.jsp").forward(request, response);
-    }
+
+	@Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+	{
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/pageConnexion.jsp");
+        dispatcher.forward(request, response);
+	}
 
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String identifiant = null;
-        String motdepasse = null;
-        Utilisateur userCo = null;
 
-        identifiant = request.getParameter( "identifiant" );
-        motdepasse = request.getParameter( "mdp" );
-        UtilisateurManager utilisateurManager = new UtilisateurManager();
-        utilisateurManager.seconnecter (identifiant,motdepasse);
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String identifiant = request.getParameter("identifiant");
+		String motdepasse = request.getParameter("motdepasse");
 
-        }
+		UtilisateurManager utilisateurManager = new UtilisateurManager();
 
-    }
+		try {
+			Utilisateur utilisateur = utilisateurManager.seconnecter(identifiant, motdepasse);
+
+			if (utilisateur != null) {
+				HttpSession session = request.getSession();
+				session.setAttribute("utilisateur", utilisateur);
+
+				response.sendRedirect("/WEB-INF/ConsultationProfil.jsp");
+			}
+
+
+			} catch (BusinessException e) {
+				e.printStackTrace();
+				request.setAttribute("listeCodesErreur", e.getListeCodesErreur());
+
+				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/pageConnexion.jsp");
+				rd.forward(request, response);
+
+}
+}}
+
+
+
+
+
+
+
+
