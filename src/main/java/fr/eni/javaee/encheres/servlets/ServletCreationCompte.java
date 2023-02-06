@@ -38,7 +38,7 @@ public class ServletCreationCompte extends HttpServlet {
 		int Credit = (0);
 
 		if (cancelButton != null) { // TODO : la redirection pageAccueil depuis creer profil marche pas 
-			response.sendRedirect("/PageAccueil.jsp");
+		//	response.sendRedirect("/PageAccueil.jsp");
 		}
 
 		if (submitButton != null) {
@@ -48,7 +48,7 @@ public class ServletCreationCompte extends HttpServlet {
 				utilisateurManager.creerCompte(newUserBO);
 			} catch (BusinessException e) {
 				request.setAttribute("listeCodeErreur", e.getListeCodesErreur());
-				request.getRequestDispatcher("/WEB-INF/jsp/PageAccueil.jsp").forward(request, response);
+				request.getRequestDispatcher("/WEB-INF/jsp/PageCreerCompte.jsp").forward(request, response);
 			}
 		}
 	}

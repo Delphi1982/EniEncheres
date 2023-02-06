@@ -49,6 +49,5 @@ public class DAOFactory {
 	        	UtilisateurDAO = new UtilisateurJDBCImpl();
 	        return UtilisateurDAO;
 	    }
-	
-	
 }
+

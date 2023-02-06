@@ -15,4 +15,6 @@ public interface UtilisateurDAO {
 
     public void update(Utilisateur user, int noId);
 
+	public int countPseudos(String pseudo);
+
     }

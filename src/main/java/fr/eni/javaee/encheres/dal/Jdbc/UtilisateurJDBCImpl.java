@@ -19,7 +19,6 @@ public class UtilisateurJDBCImpl implements UtilisateurDAO {
 	private Connection conn;
 
 	@Override
-
 	public Utilisateur getUtilisateurByPseudo(String pseudo) throws BusinessException {
 		Utilisateur utilisateur = new Utilisateur();
 		try (Connection cnx = ConnectionProvider.getConnection();
@@ -48,13 +47,30 @@ public class UtilisateurJDBCImpl implements UtilisateurDAO {
 			e.printStackTrace();
 			BusinessException businessException = new BusinessException();
 			businessException.ajouterErreur(CodesResultatDAL.LECTURE_LISTES_ECHEC);
-		throw businessException;
+			throw businessException;
 		}	
-	return utilisateur;		
-	  } 
+		return utilisateur;		
+	} 
 
+	// controle du pseudo
+	public int countPseudos(String pseudo) {
+		int count = 0;
+		
+		try (PreparedStatement ps = conn.prepareStatement(
+				"SELECT COUNT(*) FROM utilisateur WHERE pseudo = ?")) {
+			ps.setString(1, pseudo);
 			
- 
+			try (ResultSet resultSet = ps.executeQuery()) {
+				if (resultSet.next()) {
+					count = resultSet.getInt(1);
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return count;
+	}
+
 	@Override
 	public void insert(Utilisateur user) throws BusinessException {
 		Connection cnx = null;
@@ -104,8 +120,8 @@ public class UtilisateurJDBCImpl implements UtilisateurDAO {
 			}
 		}
 	}
-	
-	
+
+
 	@Override // suppression en cascade de l'utilisateur et de ses informations dans les tables associées
 	public void delete(int noId)throws BusinessException{
 		Connection cnx = null;
@@ -115,11 +131,11 @@ public class UtilisateurJDBCImpl implements UtilisateurDAO {
 			PreparedStatement ps = conn.prepareStatement("DELETE FROM UTILISATEURS WHERE idArticle = ? ON DELETE CASCADE");
 			ps.setInt(1, noId);
 			ps.executeUpdate();
-			} catch (SQLException e) {
-				e.printStackTrace();
-				businessException.ajouterErreur(1);
-				throw businessException;
-			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			businessException.ajouterErreur(1);
+			throw businessException;
+		}
 		try {
 			cnx.close();
 		} catch (SQLException e) {
@@ -145,7 +161,7 @@ public class UtilisateurJDBCImpl implements UtilisateurDAO {
 			ps.setString(8, user.getVille());
 			ps.setString(9, user.getMotDePasse());
 			ps.setInt(10, user.getCredit());
-			
+
 			ps.executeUpdate();
 
 		} catch (SQLException e) {
