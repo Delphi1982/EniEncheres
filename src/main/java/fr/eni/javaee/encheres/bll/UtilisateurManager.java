@@ -5,6 +5,7 @@ import fr.eni.javaee.encheres.bo.Utilisateur;
 import fr.eni.javaee.encheres.dal.DAO.DAOFactory;
 import fr.eni.javaee.encheres.dal.DAO.UtilisateurDAO;
 
+
 public class UtilisateurManager {
 
 	private UtilisateurDAO utilisateurDao;
@@ -152,5 +153,8 @@ public class UtilisateurManager {
 		} catch (Exception e) {
 		}
 	}
-}
+
+		
+	}
+
 
