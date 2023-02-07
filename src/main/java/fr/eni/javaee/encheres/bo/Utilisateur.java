@@ -13,6 +13,7 @@ public class Utilisateur {
 	private String ville;
 	private String motDePasse;
 	private String telephone;
+	private String confirmation;
 	private int credit;
 	private Boolean administrateur;
 	
@@ -39,8 +40,8 @@ public class Utilisateur {
 	}
 
 	// constructeur pour creer un nouveau compte
-	public Utilisateur(String pseudo,String nom,String prenom,String email,String rue,String codePostal,String ville,String motDePasse,int credit,String telephone) {
-		int Credit = (0);
+	public Utilisateur(String pseudo,String nom,String prenom,String email,String rue,String codePostal,String ville,String motDePasse,int credit,String telephone,String Confirmation) {
+		this.credit= credit;
 		this.pseudo = pseudo;
 		this.nom = nom;
 		this.prenom = prenom;
@@ -49,7 +50,22 @@ public class Utilisateur {
 		this.codePostal = codePostal;
 		this.ville = ville;
 		this.motDePasse = motDePasse;
-		this.credit = credit;
+		this.telephone = telephone;
+		this.confirmation = Confirmation;
+	}
+
+	// constructeur affichage profil
+	public Utilisateur(String pseudo, String nom, String prenom, String email, String rue, String codePostal,
+			String ville, String motDePasse, int credit, String telephone) {
+		this.credit= credit;
+		this.pseudo = pseudo;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.email = email;
+		this.rue = rue;
+		this.codePostal = codePostal;
+		this.ville = ville;
+		this.motDePasse = motDePasse;
 		this.telephone = telephone;
 	}
 
@@ -157,5 +173,13 @@ public class Utilisateur {
 		return "Utilisateur: " + noUtilisateur + ", pseudo: " + pseudo + ", nom: " + nom + ", prenom: "
 				+ prenom + ", email: " + email + ", rue: " + rue + ", codePostal: " + codePostal + ", ville: " + ville
 				+ ", motDePasse: " + motDePasse + ", credit: " + credit + ", administrateur: " + administrateur;
+	}
+
+	public String getConfirmation() {
+		return confirmation;
+	}
+	
+	public void setConfirmation(String confirmation) {
+		this.confirmation = confirmation;
 	}
 }

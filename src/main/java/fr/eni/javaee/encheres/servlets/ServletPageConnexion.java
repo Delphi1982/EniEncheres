@@ -39,6 +39,7 @@ public class ServletPageConnexion extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String identifiant = request.getParameter("identifiant");
 		String motdepasse = request.getParameter("motdepasse");
+		String createAccount = request.getParameter("createAccount");
 
 		UtilisateurManager utilisateurManager = new UtilisateurManager();
 
@@ -48,20 +49,23 @@ public class ServletPageConnexion extends HttpServlet {
 			if (utilisateur != null) {
 				HttpSession session = request.getSession();
 				session.setAttribute("utilisateur", utilisateur);
-
-				response.sendRedirect("/WEB-INF/jsp/ConsultationProfil.jsp");
+				response.sendRedirect("A FAIIIIIIIIIIIIIIIIIIIRE");
 			}
 
+			if (createAccount != null) {
+				response.sendRedirect("A FAIIIIIIIIIIIIIIIIIIIRE");
+			}
 
-			} catch (BusinessException e) {
-				e.printStackTrace();
-				request.setAttribute("listeCodesErreur", e.getListeCodesErreur());
+		} catch (BusinessException e) {
+			e.printStackTrace();
+			request.setAttribute("listeCodesErreur", e.getListeCodesErreur());
 
-				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/pageConnexion.jsp");
-				rd.forward(request, response);
+			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/pageConnexion.jsp");
+			rd.forward(request, response);
 
+		}
+	}
 }
-}}
 
 
 

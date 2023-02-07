@@ -13,11 +13,10 @@ import fr.eni.javaee.encheres.BusinessException;
 import fr.eni.javaee.encheres.bll.UtilisateurManager;
 import fr.eni.javaee.encheres.bo.Utilisateur;
 
-@WebServlet("/encheres/messages/ServletCreationCompte")
+@WebServlet("/PageCreerCompte")
 public class ServletCreationCompte extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-       
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.getRequestDispatcher("/WEB-INF/jsp/PageCreerCompte.jsp").forward(request, response);
 	}
@@ -35,14 +34,15 @@ public class ServletCreationCompte extends HttpServlet {
 		String Email = request.getParameter("Email");
 		String Rue = request.getParameter("Rue");
 		String Ville = request.getParameter("Ville");
+		String Confirmation = request.getParameter("Confirmation");
 		int Credit = (0);
 
-		if (cancelButton != null) { // TODO : la redirection pageAccueil depuis creer profil marche pas 
-		//	response.sendRedirect("/PageAccueil.jsp");
+		if (cancelButton != null) {
+			response.sendRedirect("pageConnexion");
 		}
 
 		if (submitButton != null) {
-			Utilisateur newUserBO = new Utilisateur(Pseudo, Prenom, Telephone, CodePostal,MotDePasse,Nom,Email,Rue,Credit,Ville);
+			Utilisateur newUserBO = new Utilisateur(Pseudo, Nom, Prenom,Email,Rue,CodePostal,Ville,MotDePasse,Credit,Telephone,Confirmation);
 			UtilisateurManager utilisateurManager = new UtilisateurManager();
 			try { // essai d'insertion des donnees en BDD 
 				utilisateurManager.creerCompte(newUserBO);
