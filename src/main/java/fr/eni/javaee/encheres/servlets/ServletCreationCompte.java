@@ -44,12 +44,13 @@ public class ServletCreationCompte extends HttpServlet {
 		if (submitButton != null) {
 			Utilisateur newUserBO = new Utilisateur(Pseudo, Nom, Prenom,Email,Rue,CodePostal,Ville,MotDePasse,Credit,Telephone,Confirmation);
 			UtilisateurManager utilisateurManager = new UtilisateurManager();
+			
 			try { // essai d'insertion des donnees en BDD 
 				utilisateurManager.creerCompte(newUserBO);
 			} catch (BusinessException e) {
 				request.setAttribute("listeCodeErreur", e.getListeCodesErreur());
 				request.getRequestDispatcher("/WEB-INF/jsp/PageCreerCompte.jsp").forward(request, response);
-			}
+			}response.sendRedirect("ServletListeEncheresConnecte");
 		}
 	}
 }

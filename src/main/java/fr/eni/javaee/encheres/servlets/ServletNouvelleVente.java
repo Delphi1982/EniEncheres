@@ -33,7 +33,7 @@ public class ServletNouvelleVente extends HttpServlet {
         String nomArticle = request.getParameter("nomArticle");
         String description = request.getParameter("description");
         int miseAPrix = Integer.valueOf(request.getParameter("prixInitial"));
-        //int noCategorie = Integer.valueOf(request.getParameter("noCategorie"));
+        int noCategorie = Integer.valueOf(request.getParameter("noCategorie"));
         LocalDate debutEncheres = LocalDate.parse(request.getParameter("debutEncheres"));
         LocalDate finEncheres = LocalDate.parse(request.getParameter("finEncheres"));
         String rue = request.getParameter("rue");
@@ -44,7 +44,7 @@ public class ServletNouvelleVente extends HttpServlet {
         articleVendu.setNomArticle(nomArticle);
         articleVendu.setDescription(description);
 		articleVendu.setMiseAPrix(miseAPrix);
-        //articleVendu.setNoCategorie(noCategorie);
+        articleVendu.setNoCategorie(noCategorie);
         articleVendu.setDebutEncheres(debutEncheres);
         articleVendu.setFinEncheres(finEncheres);
         // articleVendu.setNoUtilisateur(utilisateur.getNoUtilisateur());
@@ -62,7 +62,7 @@ public class ServletNouvelleVente extends HttpServlet {
 			e.printStackTrace();
 		}
 
-        response.sendRedirect("PageAccueil");
+        response.sendRedirect("ServletListeEncheresConnecte");
     }
 
 	}

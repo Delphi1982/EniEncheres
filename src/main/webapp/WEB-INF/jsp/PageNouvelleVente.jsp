@@ -4,10 +4,12 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <meta charset="UTF-8">
 <title>Ajout d'un Article</title>
 </head>
 <body>
+
 	<h1>Ajout d'un Article</h1>
 	<form method="post">
 		<label for="nomArticle">Nom de l'article :</label> <input
@@ -16,8 +18,8 @@
 			id="description" name="description" required><br>
 		<label for="miseAPrix">Mise à prix :</label> <input type="number"
 			id="miseAPrix" name="prixInitial" required><br>
-		<!--<label for="noCategorie">Catégorie :</label> <input type="number"
-			id="noCategorie" name="noCategorie" required><br>-->
+		<label for="noCategorie">Catégorie :</label> <input type="number"
+			id="noCategorie" name="noCategorie" required><br>
 		<label for="debutEncheres">Début des enchères :</label> <input
 			type="date" id="debutEncheres" name="debutEncheres" required><br>
 		<label for="finEncheres">Fin des enchères :</label> <input type="date"

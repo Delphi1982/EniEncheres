@@ -7,14 +7,15 @@
 <title>Liste des enchères</title>
 </head>
 <body>
-<%@ include file="Navbar.jspf" %>
+
 	<h1 class="center">Liste des enchères</h1>
 	<div class="left">
 		<h2>Filtres</h2>
-		<form>
+		<form method="post">
 			<label for="search">Recherche :</label> <input type="text"
 				id="search" name="search" placeholder="Le nom de l'article contient">
-			<button type="submit" name="rechercher">Rechercher</button>
+<!-- 			<button type="submit" name="rechercher">Rechercher</button> -->
+			<a href="ServletNouvelleVente" >Rechercher</a>
 			<br> <br>
 		</form>
 		<form>
@@ -49,8 +50,8 @@
 			</tr>
 		</table>
 	</div>
-	<div class="right">
-		<input type="submit" value="Rechercher" name="recherche">
-	</div>
+<!-- 	<div class="right"> -->
+<!-- 		<input type="submit" value="Rechercher" name="recherche"> -->
+<!-- 	</div> -->
 </body>
 </html>

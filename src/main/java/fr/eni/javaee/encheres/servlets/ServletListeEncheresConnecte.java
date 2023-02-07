@@ -49,8 +49,10 @@ public class ServletListeEncheresConnecte extends HttpServlet {
 			            // exécuter une action pour "ventes terminées"
 			            break;
 			        default :
+			        	   response.sendRedirect("ServletNouvelleVente");
 			        	
 			    }
+			 
 			}
 		}
 	}

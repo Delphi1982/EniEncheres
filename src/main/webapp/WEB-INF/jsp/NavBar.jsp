@@ -24,7 +24,7 @@
       <a href="PageEnchere.jsp">Enchères</a>
       <a href="PageVendre.jsp">Vendre un article</a>
       <a href="PageProfil.jsp">Mon profil</a>
-	  <a href="ServletNavbar" >Se deconnecter</a>
+	  <a href="ServletPageConnexion" >Se deconnecter</a>
   		
 		       
     </div>

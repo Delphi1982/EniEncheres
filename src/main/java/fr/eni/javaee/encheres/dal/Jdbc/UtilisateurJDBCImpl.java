@@ -53,25 +53,7 @@ public class UtilisateurJDBCImpl implements UtilisateurDAO {
 	return utilisateur;		
 	  } 
 
-	@Override
-	// controle du pseudo
-	public int countPseudos(String pseudo) {
-		int count = 0;
-
-		try {
-			Connection cnx = ConnectionProvider.getConnection();
-			PreparedStatement ps = cnx.prepareStatement("SELECT COUNT(*) FROM UTILISATEURS WHERE pseudo = ?");
-			ps.setString(1, pseudo);
-
-			ResultSet resultSet = ps.executeQuery();
-			if (resultSet.next()) {
-				count = resultSet.getInt(1);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return count;
-	}	
+			
  
 	@Override
 	public void insert(Utilisateur user) throws BusinessException {
@@ -171,6 +153,15 @@ public class UtilisateurJDBCImpl implements UtilisateurDAO {
 			e.printStackTrace();
 		}
 	}
+
+
+
+	@Override
+	public int countPseudos(String pseudo) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 
 
 }
