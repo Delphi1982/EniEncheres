@@ -19,7 +19,9 @@ public class ArticleVenduManager {
 	   }
 	   
 	   public ArticleVendu ajouterArticle (ArticleVendu ajoutArticle)throws BLLException, BusinessException, SQLException {
-
+		   
+		   this.articleVenduDAO = new ArticleVenduJDBCImpl();
+		   
 		   if(ajoutArticle.getNomArticle() == null) {
 			   throw new BLLException ("L'article doit avoir un nom");
 		   }

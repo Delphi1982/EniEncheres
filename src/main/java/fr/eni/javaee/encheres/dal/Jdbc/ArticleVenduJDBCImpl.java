@@ -19,8 +19,8 @@ public class ArticleVenduJDBCImpl implements ArticleVenduDAO {
 	private static final String SELECT_ALL = "SELECT * FROM ARTICLES_VENDUS";
 	private static final String SELECT_BY_ID = "SELECT * FROM ARTICLES_VENDUS where no_article = ?";
 	private static final String INSERT_ARTICLES_VENDUS = "INSERT INTO ARTICLES_VENDUS (nomArticle, description, noCategorie,"
-			+ "miseAPrix,debutEncheres, finEncheres, noUtilisateur) VALUE"
-			+ "(?,?,?,?,?,?,?)";
+			+ "miseAPrix,debutEncheres, finEncheres) VALUE"
+			+ "(?,?,?,?,?,?)";
 
 
 	public List<ArticleVendu> selectAllArticles() throws BusinessException {

@@ -15,6 +15,7 @@ import fr.eni.javaee.encheres.bll.ArticleVenduManager;
 import fr.eni.javaee.encheres.bll.BLLException;
 import fr.eni.javaee.encheres.bo.ArticleVendu;
 import fr.eni.javaee.encheres.bo.Retrait;
+import fr.eni.javaee.encheres.bo.Utilisateur;
 
 
 
@@ -29,7 +30,7 @@ public class ServletNouvelleVente extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
-		//Utilisateur utilisateur = (Utilisateur) request.getSession().getAttribute("utilisateur");
+		// Utilisateur utilisateur = (Utilisateur) request.getSession().getAttribute("utilisateur");
         String nomArticle = request.getParameter("nomArticle");
         String description = request.getParameter("description");
         int miseAPrix = Integer.valueOf(request.getParameter("prixInitial"));
@@ -40,6 +41,8 @@ public class ServletNouvelleVente extends HttpServlet {
         String codePostal = request.getParameter("codePostal");
         String ville = request.getParameter("ville");
 
+        Utilisateur utilisateur = new Utilisateur();
+        utilisateur.setNoUtilisateur(utilisateur.getNoUtilisateur());
         ArticleVendu articleVendu = new ArticleVendu();
         articleVendu.setNomArticle(nomArticle);
         articleVendu.setDescription(description);
@@ -53,7 +56,7 @@ public class ServletNouvelleVente extends HttpServlet {
         retrait.setCodePostale(codePostal);
         retrait.setVille(ville);
         
-
+        
         ArticleVenduManager articleVenduManager = new ArticleVenduManager();
         try {
 			articleVenduManager.ajouterArticle(articleVendu);
