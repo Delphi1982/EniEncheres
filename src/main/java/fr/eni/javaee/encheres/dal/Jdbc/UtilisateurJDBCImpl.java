@@ -16,18 +16,19 @@ public class UtilisateurJDBCImpl implements UtilisateurDAO {
 			+ "code_postal,ville,mot_de_passe,credit,administrateur "
 			+ "from Utilisateurs where pseudo = ?;";
 
-	private Connection conn;
-
+	
 	@Override
+
 	public Utilisateur getUtilisateurByPseudo(String pseudo) throws BusinessException {
-		Utilisateur utilisateur = new Utilisateur();
+		Utilisateur utilisateur = null;
 		try (Connection cnx = ConnectionProvider.getConnection();
-				PreparedStatement ps = conn.prepareStatement(SELECT_BY_PSEUDO);)
+				PreparedStatement ps = cnx.prepareStatement(SELECT_BY_PSEUDO);)
 		{
 			ps.setString(1, pseudo);
 			try (
 					ResultSet rs = ps.executeQuery()) {
 				if (rs.next()) {
+					utilisateur = new Utilisateur();
 					utilisateur.setNoUtilisateur(rs.getInt("no_utilisateur"));
 					utilisateur.setPseudo(rs.getString("pseudo"));
 					utilisateur.setNom(rs.getString("nom"));
@@ -47,30 +48,13 @@ public class UtilisateurJDBCImpl implements UtilisateurDAO {
 			e.printStackTrace();
 			BusinessException businessException = new BusinessException();
 			businessException.ajouterErreur(CodesResultatDAL.LECTURE_LISTES_ECHEC);
-			throw businessException;
+		throw businessException;
 		}	
-		return utilisateur;		
-	} 
+	return utilisateur;		
+	  } 
 
-	// controle du pseudo
-	public int countPseudos(String pseudo) {
-		int count = 0;
-		
-		try (PreparedStatement ps = conn.prepareStatement(
-				"SELECT COUNT(*) FROM utilisateur WHERE pseudo = ?")) {
-			ps.setString(1, pseudo);
 			
-			try (ResultSet resultSet = ps.executeQuery()) {
-				if (resultSet.next()) {
-					count = resultSet.getInt(1);
-				}
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return count;
-	}
-
+ 
 	@Override
 	public void insert(Utilisateur user) throws BusinessException {
 		Connection cnx = null;
@@ -120,22 +104,22 @@ public class UtilisateurJDBCImpl implements UtilisateurDAO {
 			}
 		}
 	}
-
-
+	
+	
 	@Override // suppression en cascade de l'utilisateur et de ses informations dans les tables associées
 	public void delete(int noId)throws BusinessException{
 		Connection cnx = null;
 		BusinessException businessException = new BusinessException();
 		try {
 			cnx = ConnectionProvider.getConnection();
-			PreparedStatement ps = conn.prepareStatement("DELETE FROM UTILISATEURS WHERE idArticle = ? ON DELETE CASCADE");
+			PreparedStatement ps = cnx.prepareStatement("DELETE FROM UTILISATEURS WHERE idArticle = ? ON DELETE CASCADE");
 			ps.setInt(1, noId);
 			ps.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-			businessException.ajouterErreur(1);
-			throw businessException;
-		}
+			} catch (SQLException e) {
+				e.printStackTrace();
+				businessException.ajouterErreur(1);
+				throw businessException;
+			}
 		try {
 			cnx.close();
 		} catch (SQLException e) {
@@ -148,7 +132,8 @@ public class UtilisateurJDBCImpl implements UtilisateurDAO {
 	@Override // maj données utilisateurs en bdd
 	public void update(Utilisateur user,int noId) {
 		try {
-			PreparedStatement ps = conn
+			Connection cnx = ConnectionProvider.getConnection();
+			PreparedStatement ps = cnx
 					.prepareStatement("UPDATE UTILISATEURS SET " + "pseudo = ?, nom = ?, prenom = ?, email = ?,"
 							+ "telephone = ?, rue = ?, code_postal = ?, ville = ? mot_de_passe = ? WHERE idArticle = ?");
 			ps.setString(1, user.getPseudo());
@@ -161,7 +146,7 @@ public class UtilisateurJDBCImpl implements UtilisateurDAO {
 			ps.setString(8, user.getVille());
 			ps.setString(9, user.getMotDePasse());
 			ps.setInt(10, user.getCredit());
-
+			
 			ps.executeUpdate();
 
 		} catch (SQLException e) {
@@ -169,11 +154,15 @@ public class UtilisateurJDBCImpl implements UtilisateurDAO {
 		}
 	}
 
+
+
 	@Override
-	public Utilisateur selectbypseudo(String identifiant) {
+	public int countPseudos(String pseudo) {
 		// TODO Auto-generated method stub
-		return null;
+		return 0;
 	}
+
+
 
 }
 

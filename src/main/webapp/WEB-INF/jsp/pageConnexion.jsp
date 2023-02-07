@@ -1,7 +1,7 @@
 <%@ page pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
-
+<%@ page import="fr.eni.javaee.encheres.messages.LecteurMessage" %>
 
 <!doctype html>
 <html lang="fr">
@@ -27,7 +27,18 @@
 	
     <h1>ENI-Enchères</h1>
     
-    <form class="form-connect" action="ServletPageConnexion.java" method="post">
+     	<c:if test="${!empty listeCodesErreur}">
+			<div class="alert alert-danger" role="alert">
+			  <strong>Erreur!</strong>
+			  <ul>
+			  	<c:forEach var="code" items="${listeCodesErreur}">
+			  		<li>${LecteurMessage.getMessageErreur(code)}</li>
+			  	</c:forEach>
+			  </ul>
+			</div>
+		</c:if>
+    
+    <form class="form-connect" method="post">
     
     	<div class="id">	
         	<label class="label-id" for="identifiant">Identifiant </label>

@@ -11,19 +11,20 @@ public class UtilisateurManager {
 
 	public UtilisateurManager() {
 		super();
+		utilisateurDao = DAOFactory .getUtilisateurDAO();
 	}
 
-	public Utilisateur seconnecter(String identifiant, String motdepasse) throws BusinessException {
-		Utilisateur utilisateur = utilisateurDao.selectbypseudo (identifiant);
-
+	public Utilisateur seconnecter(String identifiant, String motdepasse) throws BusinessException{
+		Utilisateur utilisateur = utilisateurDao.getUtilisateurByPseudo (identifiant);
+		
 		if (utilisateur == null) {
-			BusinessException be = new BusinessException();
-			be.ajouterErreur(CodesResultatBLL.CONNEXION_KO); 
-			throw be;}
+		BusinessException be = new BusinessException();
+		be.ajouterErreur(CodesResultatBLL.CONNEXION_KO); 
+		throw be;}
 		if (!utilisateur.getMotDePasse().equals(motdepasse)) {
-			BusinessException be = new BusinessException();
-			be.ajouterErreur(CodesResultatBLL.CONNEXION_KO); 
-			throw be;}
+		BusinessException be = new BusinessException();
+		be.ajouterErreur(CodesResultatBLL.CONNEXION_KO); 
+		throw be;}
 		return utilisateur;
 	}
 

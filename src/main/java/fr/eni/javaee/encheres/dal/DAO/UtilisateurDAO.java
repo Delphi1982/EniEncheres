@@ -11,10 +11,8 @@ public interface UtilisateurDAO {
 
     public Utilisateur getUtilisateurByPseudo(String pseudo) throws BusinessException;
 
-    public Utilisateur selectbypseudo(String identifiant);
-
     public void update(Utilisateur user, int noId);
 
-	public int countPseudos(String pseudo);
+    public int countPseudos(String pseudo);
 
     }

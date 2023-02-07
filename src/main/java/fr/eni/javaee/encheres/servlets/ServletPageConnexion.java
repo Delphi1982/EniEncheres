@@ -16,7 +16,7 @@ import fr.eni.javaee.encheres.bo.Utilisateur;
 
 
 
-@WebServlet("/pageConnexion")
+@WebServlet("/ServletPageConnexion")
 public class ServletPageConnexion extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -49,7 +49,7 @@ public class ServletPageConnexion extends HttpServlet {
 				HttpSession session = request.getSession();
 				session.setAttribute("utilisateur", utilisateur);
 
-				response.sendRedirect("/WEB-INF/ConsultationProfil.jsp");
+				response.sendRedirect("/WEB-INF/jsp/ConsultationProfil.jsp");
 			}
 
 
@@ -57,7 +57,7 @@ public class ServletPageConnexion extends HttpServlet {
 				e.printStackTrace();
 				request.setAttribute("listeCodesErreur", e.getListeCodesErreur());
 
-				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/pageConnexion.jsp");
+				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/pageConnexion.jsp");
 				rd.forward(request, response);
 
 }
