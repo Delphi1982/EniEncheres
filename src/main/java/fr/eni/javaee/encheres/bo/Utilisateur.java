@@ -36,7 +36,7 @@ public class Utilisateur {
 		this.credit = credit;
 		this.administrateur = administrateur;
 		this.telephone = telephone;
-		this.credit = credit;
+	
 	}
 
 	// constructeur pour creer un nouveau compte

@@ -12,8 +12,8 @@
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <link rel="stylesheet" href="../css/normalize.css">
-  <link rel="stylesheet" href="../css/pageConnexion.css">
+  <link rel="stylesheet" href="./css/normalize.css">
+  <link rel="stylesheet" href="./css/pageConnexion.css">
 
     <title>ENI-Enchères</title>
     
@@ -47,7 +47,7 @@
        
         <div class="pw">
         <label class="label-pw" for="password">Mot de passe </label>
-        <input class="input-pw" type="password" name="password" id="password">
+        <input class="input-pw" type="password" name="motdepasse" id="password">
         </div>
        
        

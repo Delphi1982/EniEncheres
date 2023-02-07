@@ -16,15 +16,17 @@ public class UtilisateurManager {
 
 	public Utilisateur seconnecter(String identifiant, String motdepasse) throws BusinessException{
 		Utilisateur utilisateur = utilisateurDao.getUtilisateurByPseudo (identifiant);
-
+		System.out.println("utilisateur en BDD"+ utilisateur);
 		if (utilisateur == null) {
+		System.out.println("utilisateur null");
 			BusinessException be = new BusinessException();
-			be.ajouterErreur(CodesResultatBLL.CONNEXION_KO); 
-			throw be;}
+		be.ajouterErreur(CodesResultatBLL.CONNEXION_KO); 
+		throw be;}
 		if (!utilisateur.getMotDePasse().equals(motdepasse)) {
-			BusinessException be = new BusinessException();
-			be.ajouterErreur(CodesResultatBLL.CONNEXION_KO); 
-			throw be;}
+			System.out.println("mot de passe KO" + motdepasse + " " + utilisateur.getMotDePasse());
+		BusinessException be = new BusinessException();
+		be.ajouterErreur(CodesResultatBLL.CONNEXION_KO); 
+		throw be;}
 		return utilisateur;
 	}
 
