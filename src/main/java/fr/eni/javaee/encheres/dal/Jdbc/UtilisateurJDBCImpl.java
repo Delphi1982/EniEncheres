@@ -59,7 +59,6 @@ public class UtilisateurJDBCImpl implements UtilisateurDAO {
 	
 	
 	@Override
-	
 	public Utilisateur getUtilisateurByEmail(String email) throws BusinessException {
 		Utilisateur utilisateur = null;
 		try (Connection cnx = ConnectionProvider.getConnection();
@@ -186,13 +185,13 @@ public class UtilisateurJDBCImpl implements UtilisateurDAO {
 	}
 	
 	
-	@Override // suppression en cascade de l'utilisateur et de ses informations dans les tables associées
+	@Override // suppression de l'utilisateur et de ses informations
 	public void delete(int noId)throws BusinessException{
 		Connection cnx = null;
 		BusinessException businessException = new BusinessException();
 		try {
 			cnx = ConnectionProvider.getConnection();
-			PreparedStatement ps = cnx.prepareStatement("DELETE FROM UTILISATEURS WHERE idArticle = ? ON DELETE CASCADE");
+			PreparedStatement ps = cnx.prepareStatement("DELETE FROM UTILISATEURS WHERE no_utilisateur = ?");
 			ps.setInt(1, noId);
 			ps.executeUpdate();
 			} catch (SQLException e) {

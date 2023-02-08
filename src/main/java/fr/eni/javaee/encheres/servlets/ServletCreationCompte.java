@@ -37,7 +37,7 @@ public class ServletCreationCompte extends HttpServlet {
 		int Credit = (100);
 
 		if (cancelButton != null) {
-			response.sendRedirect("pageConnexion");
+			response.sendRedirect("ServletPageAccueilNonConnecte");
 		}
 
 		if (submitButton != null) {
@@ -45,6 +45,7 @@ public class ServletCreationCompte extends HttpServlet {
 			UtilisateurManager utilisateurManager = new UtilisateurManager();
 			try { // essai d'insertion des donnees en BDD 
 				utilisateurManager.creerCompte(newUserBO);
+				response.sendRedirect("ServletPageConnexion");
 			} catch (BusinessException e) {
 				request.setAttribute("listeCodeErreur", e.getListeCodesErreur());
 				request.getRequestDispatcher("/WEB-INF/jsp/PageCreerCompte.jsp").forward(request, response);

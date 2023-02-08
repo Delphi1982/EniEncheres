@@ -56,7 +56,7 @@ public class ServletGestionProfil extends HttpServlet {
 				e.printStackTrace();
 			}
 	         session.invalidate();
-	         response.sendRedirect("/PageAccueil.jsp");
+	         response.sendRedirect("ServletPageAccueilNonConnecte");
 	     }
 	  
 	     if (saveButton != null) {

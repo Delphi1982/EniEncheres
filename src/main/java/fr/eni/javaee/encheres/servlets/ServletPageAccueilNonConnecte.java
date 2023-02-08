@@ -18,16 +18,6 @@ public class ServletPageAccueilNonConnecte extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String recherche = request.getParameter("recherche");
-		
-		String barreDeRecherche = request.getParameter("barreDeRecherche");
-		String categorie = request.getParameter("categorie");
-		
-		String choixX = request.getParameter("option");
 
-		if (recherche != null) {
-        	ArticleVenduManager encheres = new ArticleVenduManager();
-
-		}
 	}
 }
