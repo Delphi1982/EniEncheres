@@ -55,7 +55,7 @@ public class ServletPageConnexion extends HttpServlet {
 				HttpSession session = request.getSession();
 				session.setAttribute("utilisateur", utilisateur);
 
-				response.sendRedirect("ServeltAffichantProfil");
+				response.sendRedirect("ServletAffichantProfil");
 			}
 
 
