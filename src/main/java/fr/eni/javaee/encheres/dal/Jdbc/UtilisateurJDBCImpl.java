@@ -214,19 +214,17 @@ public class UtilisateurJDBCImpl implements UtilisateurDAO {
 		try {
 			Connection cnx = ConnectionProvider.getConnection();
 			PreparedStatement ps = cnx
-					.prepareStatement("UPDATE UTILISATEURS SET " + "pseudo = ?, nom = ?, prenom = ?, email = ?,"
+					.prepareStatement("UPDATE UTILISATEURS SET nom = ?, prenom = ?, email = ?,"
 							+ "telephone = ?, rue = ?, code_postal = ?, ville = ? mot_de_passe = ? WHERE idArticle = ?");
-			ps.setString(1, user.getPseudo());
-			ps.setString(2, user.getNom());
-			ps.setString(3, user.getPrenom());
-			ps.setString(4, user.getEmail());
-			ps.setString(5, user.getTelephone());
-			ps.setString(6, user.getRue());
-			ps.setString(7, user.getCodePostal());
-			ps.setString(8, user.getVille());
-			ps.setString(9, user.getMotDePasse());
-			ps.setInt(10, user.getCredit());
-			
+			ps.setString(1, user.getNom());
+			ps.setString(2, user.getPrenom());
+			ps.setString(3, user.getEmail());
+			ps.setString(4, user.getTelephone());
+			ps.setString(5, user.getRue());
+			ps.setString(6, user.getCodePostal());
+			ps.setString(7, user.getVille());
+			ps.setString(8, user.getMotDePasse());
+			ps.setInt(9, noId);
 			ps.executeUpdate();
 
 		} catch (SQLException e) {

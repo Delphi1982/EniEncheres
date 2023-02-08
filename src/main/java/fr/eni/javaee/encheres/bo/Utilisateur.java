@@ -1,6 +1,5 @@
 package fr.eni.javaee.encheres.bo;
 
-import javax.servlet.http.HttpServletRequest;
 
 public class Utilisateur {
 	private int noUtilisateur;
@@ -21,6 +20,7 @@ public class Utilisateur {
 		super();
 	}
 	
+	
 	public Utilisateur(int noUtilisateur, String pseudo, String nom, String prenom, String email, String rue,
 			String codePostal, String ville, String motDePasse, int credit, Boolean administrateur,String telephone) {
 		super();
@@ -36,7 +36,7 @@ public class Utilisateur {
 		this.credit = credit;
 		this.administrateur = administrateur;
 		this.telephone = telephone;
-	
+		this.credit = credit;
 	}
 
 	// constructeur pour creer un nouveau compte
