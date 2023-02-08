@@ -14,7 +14,7 @@ import fr.eni.javaee.encheres.BusinessException;
 import fr.eni.javaee.encheres.bll.UtilisateurManager;
 import fr.eni.javaee.encheres.bo.Utilisateur;
 
-@WebServlet("/ServeltAffichantProfil")
+@WebServlet("/ServletAffichantProfil")
 public class ServletAffichantProfil extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
