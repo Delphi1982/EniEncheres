@@ -7,5 +7,5 @@ import fr.eni.javaee.encheres.bo.Retrait;
 
 
 public interface RetraitDAO {
-	public Retrait insertAdresse(Retrait ajoutAdresse) throws BusinessException, SQLException;
+	public Retrait insertAdresse(Retrait retrait, int noArticle) throws BusinessException, SQLException;
 }

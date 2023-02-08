@@ -17,15 +17,18 @@ public class Retrait {
 	this.ville = ville;
 }*/
 
+
 public Retrait(String rue, String codePostale, String ville) {
 	this.rue = rue;
 	this.codePostale = codePostale;
 	this.ville = ville;
 }
 
+
 public Retrait() {
-	
+	// TODO Auto-generated constructor stub
 }
+
 
 public int getNoArticle() {
 	return noArticle;
@@ -67,5 +70,8 @@ public String toString() {
 					", ville=" + ville +
 					"}";
 				}
+
+	
 }
+
 

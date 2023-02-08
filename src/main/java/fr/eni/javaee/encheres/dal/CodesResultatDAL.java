@@ -22,6 +22,8 @@ public abstract class CodesResultatDAL {
 
 	public static final int LECTURE_LISTES_ECHEC = 10003;
 
+	public static final int LECTURE_CATEGORIES_ECHEC = 10004;
+
 
 	
 	

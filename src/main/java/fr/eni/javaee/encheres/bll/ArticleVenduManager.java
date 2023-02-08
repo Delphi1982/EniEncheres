@@ -10,43 +10,67 @@ import fr.eni.javaee.encheres.dal.Jdbc.ArticleVenduJDBCImpl;
 
 
 
-public class ArticleVenduManager {
-	private ArticleVenduDAO articleVenduDAO;
-
-	   public ArticleVendu afficherLesInformations(int idArticle) throws BusinessException {
-		  this.articleVenduDAO = new ArticleVenduJDBCImpl();
+public class ArticleVenduManager implements ArticleVenduDAO{
+	private static ArticleVenduDAO articleVenduDAO = new ArticleVenduJDBCImpl();
+	private  BusinessException exception = null;
+	
+	   public ArticleVendu selectArticleById(int idArticle) throws BusinessException {
+		  //this.articleVenduDAO = new ArticleVenduJDBCImpl();
 	      return articleVenduDAO.selectArticleById(idArticle);
 	   }
-	   
-	   public ArticleVendu ajouterArticle (ArticleVendu ajoutArticle)throws BLLException, BusinessException, SQLException {
+	   private  BusinessException getBusinessException() {
+		   if (exception == null) {
+			   exception = new BusinessException();
+			 
+		   }return exception;
+	   }
+	   public ArticleVendu insertArticle (ArticleVendu ajoutArticle)throws BusinessException, SQLException {
 		   
-		   this.articleVenduDAO = new ArticleVenduJDBCImpl();
-		   
-		   if(ajoutArticle.getNomArticle() == null) {
-			   throw new BLLException ("L'article doit avoir un nom");
+		   if(ajoutArticle.getNomArticle().trim().isEmpty()) {
+			   getBusinessException().ajouterErreur(CodesResultatBLL.NOM_ARTICLE);
 		   }
-		   if(ajoutArticle.getDescription() == null) {
-			   throw new BLLException ("L'article doit avoir une description");
+		   if(ajoutArticle.getDescription().trim().isEmpty()) {
+			   getBusinessException().ajouterErreur(CodesResultatBLL.DESCRIPTION);
 		   }
-		   if(ajoutArticle.getNoCategorie() <= 0) {
-			   throw new BLLException ("L'article doit avoir une categorie");
-		   }
+		   /*if(ajoutArticle.getNoCategorie() <= 0) {
+			   getBusinessException().ajouterErreur(CodesResultatBLL.NO_CATEGORIE);
+			}*/
 		   
 		   if(ajoutArticle.getMiseAPrix() <= 0) {
-			   throw new BLLException ("L'article doit avoir un prix supérieur à zéro");
+			   getBusinessException().ajouterErreur(CodesResultatBLL.MISE_PRIX);
 		   }
-		   
-		   
+		      
 		   if(ajoutArticle.getDebutEncheres() == null || ajoutArticle.getDebutEncheres().isAfter(LocalDate.now()) || ajoutArticle.getDebutEncheres().isBefore(LocalDate.now())){   
-			   throw new BLLException ("L'article doit avoir une date de debut d'enchere et cette date doit être egal à la date du jour.");
+			   getBusinessException().ajouterErreur(CodesResultatBLL.DATE_ENCHERE);
 		   }
 		   
 		   if(ajoutArticle.getFinEncheres() == null || ajoutArticle.getFinEncheres().isBefore(LocalDate.now())) {
-			   throw new BLLException ("L'article doit avoir une date de fin d'enchere et cette date doit être supérieur à la date du jour");
+			   getBusinessException().ajouterErreur(CodesResultatBLL.DATE_FIN_ENCHERE);
 		   }
+		   if (ajoutArticle.getRetrait().getRue() == null || ajoutArticle.getRetrait().getRue().trim().isEmpty()) {
+			   getBusinessException().ajouterErreur(CodesResultatBLL.NOM_RUE);
+			}
+			
+			if (ajoutArticle.getRetrait().getCodePostale() == null || ajoutArticle.getRetrait().getCodePostale().trim().isEmpty()) {
+				getBusinessException().ajouterErreur(CodesResultatBLL.NOM_CODE_POSTALE);
+			}
+			
+			if (ajoutArticle.getRetrait().getVille() == null || ajoutArticle.getRetrait().getVille().trim().isEmpty()) {
+				getBusinessException().ajouterErreur(CodesResultatBLL.NOM_VILLE);
+			}
 
-		return articleVenduDAO.insertArticle(ajoutArticle);
+		   if (exception == null || !exception.hasErreurs()) {
+				articleVenduDAO.insertArticle(ajoutArticle);
+			} else {
+				throw exception;
+			}
+	   
+		   return ajoutArticle;
+	
 	   }
 	
-	   
+
+
+		
+	
 	}

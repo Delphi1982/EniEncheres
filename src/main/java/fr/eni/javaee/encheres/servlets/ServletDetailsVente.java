@@ -28,7 +28,7 @@ public class ServletDetailsVente extends HttpServlet {
 		ArticleVenduManager articleVenduManager = new ArticleVenduManager();
 		int idArticle = Integer.valueOf(request.getParameter("idArticle"));
 		try {
-	         ArticleVendu articleVendu = articleVenduManager.afficherLesInformations(idArticle);
+	         ArticleVendu articleVendu = articleVenduManager.selectArticleById(idArticle);
 	         request.setAttribute("articleVendu", articleVendu);
 	         
 	      } catch (BusinessException e) {

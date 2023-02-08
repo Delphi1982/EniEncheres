@@ -10,9 +10,22 @@ import fr.eni.javaee.encheres.dal.Jdbc.CategorieJDBCImpl;
 
 
 public class CategorieManager {
-private CategorieDAO listeCategorie;
+private CategorieDAO categorieDAO  = new CategorieJDBCImpl();
+
+public CategorieManager() {
+
+}
 	
 	public List<Categorie> afficherCategories() throws BusinessException {
-		this.listeCategorie = new CategorieJDBCImpl();
-		return listeCategorie.selectAllCategorie();
-}}
+		this.categorieDAO = new CategorieJDBCImpl();
+		return categorieDAO.selectAllCategorie();
+}
+
+	public Categorie getById(int id) throws BusinessException
+	{
+		return categorieDAO.getById(id);
+	}
+
+	
+	
+}

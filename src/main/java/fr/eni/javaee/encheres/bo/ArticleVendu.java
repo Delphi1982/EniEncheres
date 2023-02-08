@@ -1,8 +1,11 @@
 package fr.eni.javaee.encheres.bo;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class ArticleVendu {
+public class ArticleVendu implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
 	private int noArticle;
 	private String nomArticle;
 	private String description;
@@ -12,16 +15,17 @@ public class ArticleVendu {
 	private int prixVente;
 	private String etatVente;
 	private int noUtilisateur;
-	private int noCategorie;
+	private Utilisateur utilisateur;
+	private Categorie categorie;
+	private Retrait retrait;
 	
-
 
 
 // Constructeur Methode SELECT_ALL, SELECT_BY_ID
 public ArticleVendu(String nomArticle, int noArticle, String description, 
 					int noCategorie, int miseAPrix,
-					LocalDate finEncheres,
-					int noUtilisateur) {
+					LocalDate finEncheres, int noUtilisateur)
+{
 	
 	this.noArticle = noArticle;
 	this.nomArticle = nomArticle;
@@ -29,7 +33,7 @@ public ArticleVendu(String nomArticle, int noArticle, String description,
 	this.finEncheres = finEncheres;
 	this.miseAPrix = miseAPrix;
 	this.noUtilisateur = noUtilisateur;
-	this.noCategorie = noCategorie;
+	
 }
 
 // Constructeur INSERT_ARTICLES_VENDUS
@@ -37,13 +41,38 @@ public ArticleVendu(String nomArticle, int noArticle, String description,
 
 public ArticleVendu(String nomArticle, String description, 
 		int noCategorie, int miseAPrix,
-		LocalDate debutEncheres,LocalDate finEncheres) {
+		LocalDate debutEncheres,LocalDate finEncheres, Utilisateur utilisateur,Categorie categorie) {
 	this.nomArticle = nomArticle;
 	this.description = description;
 	this.finEncheres = finEncheres;
 	this.debutEncheres =debutEncheres;
 	this.miseAPrix = miseAPrix;
-	this.noCategorie = noCategorie;
+	this.utilisateur = utilisateur;
+	this.categorie = categorie;
+}
+
+public Utilisateur getUtilisateur() {
+	return utilisateur;
+}
+
+public void setUtilisateur(Utilisateur utilisateur) {
+	this.utilisateur = utilisateur;
+}
+
+public Categorie getCategorie() {
+	return categorie;
+}
+
+public void setCategorie(Categorie categorie) {
+	this.categorie = categorie;
+}
+
+public Retrait getRetrait() {
+	return retrait;
+}
+
+public void setRetrait(Retrait retrait) {
+	this.retrait = retrait;
 }
 
 public int getNoArticle() {
@@ -117,14 +146,14 @@ public int getNoUtilisateur() {
 public void setNoUtilisateur(int noUtilisateur) {
     this.noUtilisateur = noUtilisateur;
 }
-
+/*
 public int getNoCategorie() {
     return noCategorie;
 }
 
 public void setNoCategorie(int noCategorie) {
     this.noCategorie = noCategorie;
-}
+}*/
 
 public ArticleVendu() {
 	super();
@@ -140,9 +169,11 @@ public String toString() {
 			", miseAPrix=" + miseAPrix +
 			", prixVente=" + prixVente +
 			", etatVente=" + etatVente +
-			"' noUtilisateur=" + noUtilisateur +
-			", noCategorie=" + noCategorie +
+			",Utilisateur=" + noUtilisateur +
+			/*", noCategorie=" + noCategorie +*/
 			"}";
 			
 	}
+
+
 }

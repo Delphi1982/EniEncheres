@@ -1,7 +1,6 @@
 package fr.eni.javaee.encheres.dal.Jdbc;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -18,9 +17,8 @@ import fr.eni.javaee.encheres.dal.DAO.ArticleVenduDAO;
 public class ArticleVenduJDBCImpl implements ArticleVenduDAO {
 	private static final String SELECT_ALL = "SELECT * FROM ARTICLES_VENDUS";
 	private static final String SELECT_BY_ID = "SELECT * FROM ARTICLES_VENDUS where no_article = ?";
-	private static final String INSERT_ARTICLES_VENDUS = "INSERT INTO ARTICLES_VENDUS (nomArticle, description, noCategorie,"
-			+ "miseAPrix,debutEncheres, finEncheres) VALUE"
-			+ "(?,?,?,?,?,?)";
+	private static final String INSERT_ARTICLES_VENDUS = "INSERT INTO ARTICLES_VENDUS (nom_article,description,date_debut_encheres,date_fin_encheres,prix_initial,no_utilisateur,no_categorie,no_retrait)"
+			+ "VALUES(?,?,?,?,?,?,?,?)";
 
 
 	public List<ArticleVendu> selectAllArticles() throws BusinessException {
@@ -76,48 +74,36 @@ public class ArticleVenduJDBCImpl implements ArticleVenduDAO {
 		return articleVendu;
 	}
 
-	public ArticleVendu insertArticle (ArticleVendu ajoutArticle) throws BusinessException, SQLException {
-		ArticleVendu nouvelArticle = null;
-		if(ajoutArticle==null)
-		{
-			BusinessException businessException = new BusinessException();
-			businessException.ajouterErreur(CodesResultatDAL.INSERT_OBJET_NULL);
-			throw businessException;
-		}
+	public ArticleVendu insertArticle (ArticleVendu articleVendu) throws BusinessException, SQLException {
 
 		try(Connection cnx = ConnectionProvider.getConnection()
 				;PreparedStatement pstmt = cnx.prepareStatement(INSERT_ARTICLES_VENDUS, PreparedStatement.RETURN_GENERATED_KEYS)){
 
-			pstmt.setString(1, ajoutArticle.getNomArticle());
-			pstmt.setString(2, ajoutArticle.getDescription());
-			pstmt.setInt(3, ajoutArticle.getNoCategorie());
-			pstmt.setInt(4, ajoutArticle.getMiseAPrix());
-			pstmt.setDate(5,java.sql.Date.valueOf(ajoutArticle.getDebutEncheres()));
-			pstmt.setDate(6,java.sql.Date.valueOf(ajoutArticle.getFinEncheres()));
+			pstmt.setString(1, articleVendu.getNomArticle());
+			pstmt.setString(2, articleVendu.getDescription());
+			pstmt.setDate(3, java.sql.Date.valueOf(articleVendu.getDebutEncheres()));
+			pstmt.setDate(4, java.sql.Date.valueOf(articleVendu.getFinEncheres()));
+			pstmt.setInt(5, articleVendu.getMiseAPrix());
+			pstmt.setInt(6, articleVendu.getUtilisateur().getNoUtilisateur());
+			pstmt.setInt(7, articleVendu.getCategorie().getNoCategorie());
+			pstmt.setInt(8, articleVendu.getRetrait().getNoArticle());
 
 			pstmt.executeUpdate();
-			try (ResultSet rs = pstmt.getGeneratedKeys()) {
-				if(rs.next()){
-					nouvelArticle = new ArticleVendu(
-							ajoutArticle.getNomArticle(),
-							ajoutArticle.getDescription(),
-							ajoutArticle.getNoCategorie(),
-							ajoutArticle.getMiseAPrix(),
-							ajoutArticle.getDebutEncheres(),
-							ajoutArticle.getFinEncheres()
-							);
+			
+			ResultSet rs = pstmt.getGeneratedKeys();
+			
+			if(rs.next()) {
+				articleVendu.setNoArticle(rs.getInt(1));
 				}
-
+			RetraitJDBCImpl retraitJDBC = new RetraitJDBCImpl();
+			retraitJDBC.insertAdresse(articleVendu.getRetrait(),articleVendu.getNoArticle());
 			} catch (Exception e) {
 				e.printStackTrace();
-				BusinessException businessException = new BusinessException();
-				businessException.ajouterErreur(CodesResultatDAL.INSERT_OBJET_ECHEC);
-				throw businessException;
+
 			}
-			return nouvelArticle;
+			return articleVendu;
 		}
 
 
 	}
-}
 

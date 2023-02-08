@@ -10,5 +10,7 @@ import fr.eni.javaee.encheres.bo.Categorie;
 
 public interface CategorieDAO {
 	List<Categorie> selectAllCategorie() throws BusinessException;
+
+	public Categorie getById(int id) throws BusinessException;
 	
 }

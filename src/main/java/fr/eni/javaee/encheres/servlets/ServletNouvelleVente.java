@@ -10,12 +10,17 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import fr.eni.javaee.encheres.BusinessException;
 import fr.eni.javaee.encheres.bll.ArticleVenduManager;
-import fr.eni.javaee.encheres.bll.BLLException;
+import fr.eni.javaee.encheres.bll.CategorieManager;
 import fr.eni.javaee.encheres.bo.ArticleVendu;
+import fr.eni.javaee.encheres.bo.Categorie;
 import fr.eni.javaee.encheres.bo.Retrait;
+import fr.eni.javaee.encheres.bo.Utilisateur;
+
+
 
 
 
@@ -30,48 +35,54 @@ public class ServletNouvelleVente extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// Recuperer utilisateur
-		//Utilisateur utilisateur = (Utilisateur) request.getSession().getAttribute("utilisateur");
+		HttpSession session = request.getSession();
+		ArticleVendu article = new ArticleVendu();
 		
-        String nomArticle = request.getParameter("nomArticle");
-        String description = request.getParameter("description");
-        int miseAPrix = Integer.valueOf(request.getParameter("prixInitial"));
-        int noCategorie = Integer.valueOf(request.getParameter("noCategorie"));
-        LocalDate debutEncheres = LocalDate.parse(request.getParameter("debutEncheres"));
-        LocalDate finEncheres = LocalDate.parse(request.getParameter("finEncheres"));
-        String rue = request.getParameter("rue");
-        String codePostal = request.getParameter("codePostal");
-        String ville = request.getParameter("ville");
+		try {
+			String nom = request.getParameter("Article");
+			String description = request.getParameter("Description");
+			LocalDate dateDebutEncheres = LocalDate.parse(request.getParameter("DebutEnchere"));
+			LocalDate dateFinEncheres = LocalDate.parse(request.getParameter("FinEnchere"));
+			int miseAPrix = Integer.parseInt(request.getParameter("MiseAPrix"));
+			String rue = request.getParameter("Rue");
+			String codePostal = request.getParameter("CodePostal");
+			String ville = request.getParameter("Ville");
+			
+			Categorie categorie = new Categorie();
+			article.setCategorie(categorie);
+			
+			Utilisateur utilisateur = (Utilisateur) session.getAttribute("utilisateur");
+			article.setUtilisateur(utilisateur);
+			Retrait retrait = new Retrait();
+				
+			retrait = new Retrait();
+			retrait.setRue(rue);
+			retrait.setCodePostale(codePostal);
+			retrait.setVille(ville);
+				
+			article.setRetrait(retrait);			
+			
+			article.setNomArticle(nom);
+			article.setDescription(description);
+			article.setDebutEncheres(dateDebutEncheres);
+			article.setFinEncheres(dateFinEncheres);
+			article.setMiseAPrix(miseAPrix);
+			article.setCategorie(categorie);
+			
+			ArticleVenduManager articleVenduManager = new ArticleVenduManager();
+			
+			articleVenduManager.insertArticle(article);
+			response.sendRedirect("ServletListeEncheresConnecte");
+			} catch (BusinessException e) {
+			   request.setAttribute("listeCodeErreur", e.getListeCodesErreur());
+			   this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/PageNouvelleVente.jsp").forward(request, response);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+	}}
+			
 
 
-        ArticleVendu articleVendu = new ArticleVendu();
-        articleVendu.setNomArticle(nomArticle);
-        articleVendu.setDescription(description);
-		articleVendu.setMiseAPrix(miseAPrix);
-        articleVendu.setNoCategorie(noCategorie);
-        articleVendu.setDebutEncheres(debutEncheres);
-        articleVendu.setFinEncheres(finEncheres);
-        //articleVendu.setNoUtilisateur(utilisateur.getNoUtilisateur());
-        Retrait retrait = new Retrait();
-        retrait.setRue(rue);
-        retrait.setCodePostale(codePostal);
-        retrait.setVille(ville);
-        
-        
-        ArticleVenduManager articleVenduManager = new ArticleVenduManager();
-        try {
-			articleVenduManager.ajouterArticle(articleVendu);
-		} catch (BLLException | BusinessException | SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-        response.sendRedirect("ServletListeEncheresConnecte");
-    }
-
-	
-
-	}
 
 
 

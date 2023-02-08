@@ -18,6 +18,15 @@ public abstract class CodesResultatBLL {
 	public static final int MOT_DE_PASSE_KO = 20010;
 	public static final int CONNEXION_KO = 20011;
 	public static final int PSEUDO_KO_2=20012;
-	public static final int EMAIL_KO_2 = 20013;
+	public static final int EMAIL_KO_2 = 20012;
+	public static final int NOM_ARTICLE=20013;
+	public static final int DESCRIPTION=20014;
+	public static final int NO_CATEGORIE=20015;
+	public static final int MISE_PRIX=20016;
+	public static final int DATE_ENCHERE=20017;
+	public static final int DATE_FIN_ENCHERE=20018;
+	public static final int NOM_RUE=20019;
+	public static final int NOM_CODE_POSTALE=20020;
+	public static final int NOM_VILLE=20021;
 	
 }
