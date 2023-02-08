@@ -17,27 +17,6 @@ public class ServletGestionProfil extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        String pseudo = (String) session.getAttribute("pseudo");
-        String nom = (String) session.getAttribute("nom");
-        String prenom = (String) session.getAttribute("prenom");
-        String email = (String) session.getAttribute("email");
-        String rue = (String) session.getAttribute("rue");
-        String codePostal = (String) session.getAttribute("codePostal");
-        String ville = (String) session.getAttribute("ville");
-        String motDePasse = (String) session.getAttribute("motDePasse");
-        String telephone = (String) session.getAttribute("telephone");
-        int credit = (int) session.getAttribute("credit");
-        request.setAttribute("pseudo", pseudo);
-        request.setAttribute("nom", nom);
-        request.setAttribute("prenom", prenom);
-        request.setAttribute("email", email);
-        request.setAttribute("rue", rue);
-        request.setAttribute("codePostal", codePostal);
-        request.setAttribute("ville", ville);
-        request.setAttribute("motDePasse", motDePasse);
-        request.setAttribute("telephone", telephone);
-        request.setAttribute("credit", credit);
         request.getRequestDispatcher("/WEB-INF/jsp/GestionProfil.jsp").forward(request, response);
 	}
 	
@@ -45,17 +24,17 @@ public class ServletGestionProfil extends HttpServlet {
 	    String saveButton = request.getParameter("save");
 	    String deleteButton = request.getParameter("delete"); 
 	    HttpSession session = request.getSession();
-        int noUtilisateur = (int) session.getAttribute("noUtilisateur");
-        String pseudo = (String) session.getAttribute("pseudo");
-        String nom = (String) session.getAttribute("nom");
-        String prenom = (String) session.getAttribute("prenom");
-        String email = (String) session.getAttribute("email");
-        String rue = (String) session.getAttribute("rue");
-        String codePostal = (String) session.getAttribute("codePostal");
-        String ville = (String) session.getAttribute("ville");
-        String motDePasse = (String) session.getAttribute("motDePasse");
-        String telephone = (String) session.getAttribute("telephone");
-        int credit = (int)session.getAttribute("credit");
+        int noUtilisateur = ((Utilisateur) session.getAttribute("utilisateur")).getNoUtilisateur();
+        String pseudo =  request.getParameter("pseudo");
+        String nom =  request.getParameter("Nom");
+        String prenom =  request.getParameter("prenom");
+        String email =  request.getParameter("email");
+        String rue =  request.getParameter("rue");
+        String codePostal = request.getParameter("codePostal");
+        String ville =  request.getParameter("ville");
+        String motDePasse =  request.getParameter("motDePasse");
+        String telephone =  request.getParameter("telephone");
+        int credit = ((Utilisateur)session.getAttribute("utilisateur")).getCredit();
         request.setAttribute("noUtilisateur", noUtilisateur);
         request.setAttribute("pseudo", pseudo);
         request.setAttribute("nom", nom);

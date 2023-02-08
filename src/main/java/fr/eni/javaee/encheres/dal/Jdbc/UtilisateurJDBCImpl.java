@@ -146,7 +146,7 @@ public class UtilisateurJDBCImpl implements UtilisateurDAO {
 				businessException.ajouterErreur(1);
 				throw businessException;
 			}
-			ps = cnx.prepareStatement("INSERT INTO UTILISATEURS (pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,credit,administrateur) "
+			ps = cnx.prepareStatement("INSERT INTO UTILISATEURS (pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,credit,administrateur)"
 					+ "VALUES (?,?,?,?,?,?,?,?,?,?,?)", PreparedStatement.RETURN_GENERATED_KEYS);
 			ps.setString(1, user.getPseudo());
 			ps.setString(2, user.getNom());
