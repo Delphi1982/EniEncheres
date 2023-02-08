@@ -5,6 +5,14 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+<meta charset="utf-8">
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" href="./css/normalize.css">
+<link rel="stylesheet" href="./css/pageCreerCompte.css">
+
 <title>ENI-enchères</title>
 </head>
 <body>
@@ -23,60 +31,58 @@
 
 	<form class="center" method="POST">
 		<h2>Mon Profil</h2>
-		<table>
-			<tr>
-				<td>
-					<p>
-						<label for="Pseudo">Pseudo:</label><input type="text" id="Pseudo"
-							name="Pseudo">
-					</p>
-					<p>
-						<label for="Prenom">Prénom:</label><input type="text" id="Prenom"
-							name="Prenom">
-					</p>
-					<p>
-						<label for="Telephone">Téléphone:</label><input type="text"
-							id="Telephone" name="Telephone">
-					</p>
-					<p>
-						<label for="CodePostal">Code postal:</label><input type="text"
-							id="CodePostal" name="CodePostal">
-					</p>
-					<p>
-						<label for="MotDePasse">Mot de passe:</label><input
-							type="password" id="MotDePasse" name="MotDePasse">
-					</p>
-				</td>
-				<td>
-					<p>
-						<label for="Nom">Nom:</label><input type="text" id="Nom"
-							name="Nom">
-					</p>
-					<p>
-						<label for="Email">Email:</label><input type="email" id="Email"
-							name="Email">
-					</p>
-					<p>
-						<label for="Rue">Rue:</label><input type="text" id="Rue"
-							name="Rue">
-					</p>
-					<p>
-						<label for="Ville">Ville:</label><input type="text" id="Ville"
-							name="Ville">
-					</p>
-					<p>
-						<label for="Confirmation">Confirmation:</label><input
-							type="password" id="Confirmation" name="Confirmation">
-					</p>
-				</td>
-			</tr>
-		</table>
 		<div>
-			<input type="submit" value="Créer" name="submit"> <input
-				type="submit" value="Annuler" name="cancel"> <br> <br>
+			<div class="ProfilPart1">
+				<p>
+					<label for="Pseudo">Pseudo:</label><input class="case" type="text" id="Pseudo"
+						name="Pseudo">
+				</p>
+				<p>
+					<label for="Prenom">Prénom:</label><input class="case" type="text" id="Prenom"
+						name="Prenom" required>
+				</p>
+				<p>
+					<label for="Telephone">Téléphone:</label><input class="case" type="text"
+						id="Telephone" name="Telephone" required>
+				</p>
+				<p>
+					<label for="CodePostal">Code postal:</label><input class="case" type="text"
+						id="CodePostal" name="CodePostal" required>
+				</p>
+				<p>
+					<label for="MotDePasse">Mot de passe:</label><input class="case" type="password"
+						id="MotDePasse" name="MotDePasse" required>
+				</p>
+			</div>
+			
+			<div class="ProfilPart2">
+				<p>
+					<label for="Nom">Nom:</label><input class="case" type="text" id="Nom" name="Nom"
+						required>
+				</p>
+				<p>
+					<label for="Email">Email:</label><input class="case" type="email" id="Email"
+						name="Email" required>
+				</p>
+				<p>
+					<label for="Rue">Rue:</label><input class="case" type="text" id="Rue" name="Rue"
+						required>
+				</p>
+				<p>
+					<label for="Ville">Ville:</label><input class="case" type="text" id="Ville"
+						name="Ville" required>
+				</p>
+				<p>
+					<label for="Confirmation">Confirmation:</label><input class="case"
+						type="password" id="Confirmation" name="Confirmation" required>
+				</p>
+			</div>
+		</div>
+		<div >
+			<input class="button1" type="submit" value="Créer" name="submit"> 
+			<input class="button2" type="submit" value="Annuler" name="cancel"> <br> <br>
 			<c:out value="${errorMessage}" />
 		</div>
 	</form>
-
 </body>
 </html>

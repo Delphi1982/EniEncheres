@@ -1,0 +1,59 @@
+@charset "UTF-8";
+
+h1 {
+	margin-left: 60px;
+	margin-top: 50px;
+	
+}
+
+h2 {
+	margin-left : 400px;
+}
+
+.case {
+	border: 2px solid black;
+	border-radius: 0px;
+}
+
+.ProfilPart1{
+	width: 250px;
+    margin-left : 150px;
+	display : flex;
+	flex-direction : column;
+	justify-content : space-between;
+}
+
+.ProfilPart2 {
+	width: 250px;
+	margin-left : 550px;
+	margin-top : -379px;
+	display : flex;
+	flex-direction : column;
+	justify-content : space-between;
+	
+}
+
+.button1 {
+	width: 200 px;
+	padding: 20px;
+	margin-left : 350px;
+	border: 2px solid black;
+	border-radius: 0px;
+	color: black;
+	background: white;
+	text-decoration: none;
+	box-shadow : 5px 5px 0px;
+}
+
+.button2 {
+	width: 100 px;
+	padding: 20px;
+	margin-left : 50px;
+	border: 2px solid black;
+	border-radius: 0px;
+	color: black;
+	background: white;
+	text-decoration: none;
+	box-shadow : 5px 5px 0px;
+	
+}
