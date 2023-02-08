@@ -15,6 +15,10 @@ public class UtilisateurJDBCImpl implements UtilisateurDAO {
 	private static final String SELECT_BY_PSEUDO = "select no_utilisateur,pseudo,nom,prenom,email,telephone,rue,"
 			+ "code_postal,ville,mot_de_passe,credit,administrateur "
 			+ "from Utilisateurs where pseudo = ?;";
+	
+	private static final String SELECT_BY_EMAIL = "select no_utilisateur,pseudo,nom,prenom,email,telephone,rue,"
+				+ "code_postal,ville,mot_de_passe,credit,administrateur "
+				+ "from Utilisateurs where email = ?;";
 
 	
 	@Override
@@ -52,6 +56,44 @@ public class UtilisateurJDBCImpl implements UtilisateurDAO {
 		}	
 	return utilisateur;		
 	  } 
+	
+	
+	@Override
+	
+	public Utilisateur getUtilisateurByEmail(String email) throws BusinessException {
+		Utilisateur utilisateur = null;
+		try (Connection cnx = ConnectionProvider.getConnection();
+				PreparedStatement ps = cnx.prepareStatement(SELECT_BY_EMAIL);)
+		{
+			ps.setString(1, email);
+			try (
+					ResultSet rs = ps.executeQuery()) {
+				if (rs.next()) {
+					utilisateur = new Utilisateur();
+					utilisateur.setNoUtilisateur(rs.getInt("no_utilisateur"));
+					utilisateur.setPseudo(rs.getString("pseudo"));
+					utilisateur.setNom(rs.getString("nom"));
+					utilisateur.setPrenom(rs.getString("prenom"));
+					utilisateur.setEmail(rs.getString("email"));
+					utilisateur.setRue(rs.getString("rue"));
+					utilisateur.setTelephone(rs.getString("telephone"));
+					utilisateur.setCodePostal(rs.getString("code_postal"));
+					utilisateur.setVille(rs.getString("ville"));
+					utilisateur.setMotDePasse(rs.getString("mot_de_passe"));
+					utilisateur.setCredit(rs.getInt("credit"));
+					utilisateur.setAdministrateur(rs.getBoolean("administrateur"));
+				}
+			}
+		} catch (SQLException e)
+		{
+			e.printStackTrace();
+			BusinessException businessException = new BusinessException();
+			businessException.ajouterErreur(CodesResultatDAL.LECTURE_LISTES_ECHEC);
+		throw businessException;
+		}	
+	return utilisateur;		
+	  } 
+
 
 	@Override
 	// controle du pseudo

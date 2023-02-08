@@ -15,17 +15,62 @@ public class UtilisateurManager {
 	}
 
 	public Utilisateur seconnecter(String identifiant, String motdepasse) throws BusinessException{
-		Utilisateur utilisateur = utilisateurDao.getUtilisateurByPseudo (identifiant);
-		if (utilisateur == null) {
+		Utilisateur utilisateurPseudo = utilisateurDao.getUtilisateurByPseudo (identifiant);
+		Utilisateur utilisateurEmail = utilisateurDao.getUtilisateurByEmail (identifiant);
+		System.out.println("utilisateur en BDD"+ utilisateurPseudo);
+		System.out.println("utilisateur en BDD"+ utilisateurEmail);
+		if (utilisateurPseudo == null && utilisateurEmail == null) {
+		System.out.println("utilisateur null");
 			BusinessException be = new BusinessException();
-			be.ajouterErreur(CodesResultatBLL.CONNEXION_KO); 
-			throw be;}
-		if (!utilisateur.getMotDePasse().equals(motdepasse)) {
-			BusinessException be = new BusinessException();
-			be.ajouterErreur(CodesResultatBLL.CONNEXION_KO); 
-			throw be;}
-		return utilisateur;
+		be.ajouterErreur(CodesResultatBLL.CONNEXION_KO); 
+		throw be;}
+		if (utilisateurPseudo != null && !utilisateurPseudo.getMotDePasse().equals(motdepasse)) {
+			System.out.println("mot de passe KO" + motdepasse + " " + utilisateurPseudo.getMotDePasse());
+		BusinessException be = new BusinessException();
+		be.ajouterErreur(CodesResultatBLL.CONNEXION_KO); 
+		throw be;}
+		if (utilisateurEmail != null && !utilisateurEmail.getMotDePasse().equals(motdepasse)) {
+			System.out.println("mot de passe KO" + motdepasse + " " + utilisateurEmail.getMotDePasse());
+		BusinessException be = new BusinessException();
+		be.ajouterErreur(CodesResultatBLL.CONNEXION_KO); 
+		throw be;}
+		return utilisateurPseudo != null ? utilisateurPseudo : utilisateurEmail;
 	}
+//	public Utilisateur seconnecter(String identifiant, String motdepasse) throws BusinessException{
+//		Utilisateur utilisateur = utilisateurDao.getUtilisateurByPseudo (identifiant);
+//		System.out.println("utilisateur en BDD"+ utilisateur);
+//		if (utilisateur == null) {
+//		System.out.println("utilisateur null");
+//			BusinessException be = new BusinessException();
+//		be.ajouterErreur(CodesResultatBLL.CONNEXION_KO); 
+//		throw be;}
+//		if (!utilisateur.getMotDePasse().equals(motdepasse)) {
+//			System.out.println("mot de passe KO" + motdepasse + " " + utilisateur.getMotDePasse());
+//		BusinessException be = new BusinessException();
+//		be.ajouterErreur(CodesResultatBLL.CONNEXION_KO); 
+//		throw be;}
+//		return utilisateur;
+//	}
+//	
+//	public Utilisateur seconnecter1(String email, String motdepasse) throws BusinessException{
+//		String identifiant = null;
+//		Utilisateur utilisateur = utilisateurDao.getUtilisateurByEmail (identifiant);
+//		System.out.println("utilisateur en BDD"+ utilisateur);
+//		if (utilisateur == null) {
+//		System.out.println("utilisateur null");
+//			BusinessException be = new BusinessException();
+//		be.ajouterErreur(CodesResultatBLL.CONNEXION_KO); 
+//		throw be;}
+//		if (!utilisateur.getMotDePasse().equals(motdepasse)) {
+//			System.out.println("mot de passe KO" + motdepasse + " " + utilisateur.getMotDePasse());
+//		BusinessException be = new BusinessException();
+//		be.ajouterErreur(CodesResultatBLL.CONNEXION_KO); 
+//		throw be;}
+//		return utilisateur;
+//	}
+	
+	
+	
 
 	public void creerCompte(Utilisateur newUser) throws BusinessException{
 		//controle de la conformite des données 

@@ -38,18 +38,23 @@ public class ServletPageConnexion extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String identifiant = request.getParameter("identifiant");
+		String email = request.getParameter("email");
 		String motdepasse = request.getParameter("motdepasse");
 
 		UtilisateurManager utilisateurManager = new UtilisateurManager();
 
 		try {
+		    if (email != null && !email.isEmpty()) {
+		        identifiant = email;
+		      }
+		    
 			Utilisateur utilisateur = utilisateurManager.seconnecter(identifiant, motdepasse);
 
 			if (utilisateur != null) {
 				HttpSession session = request.getSession();
 				session.setAttribute("utilisateur", utilisateur);
 
-				response.sendRedirect("ServletAffichantProfil");
+				response.sendRedirect("ServeltAffichantProfil");
 			}
 
 
