@@ -5,7 +5,6 @@ import fr.eni.javaee.encheres.bo.Utilisateur;
 import fr.eni.javaee.encheres.dal.DAO.DAOFactory;
 import fr.eni.javaee.encheres.dal.DAO.UtilisateurDAO;
 
-
 public class UtilisateurManager {
 
 	private UtilisateurDAO utilisateurDao;
@@ -17,17 +16,14 @@ public class UtilisateurManager {
 
 	public Utilisateur seconnecter(String identifiant, String motdepasse) throws BusinessException{
 		Utilisateur utilisateur = utilisateurDao.getUtilisateurByPseudo (identifiant);
-		System.out.println("utilisateur en BDD"+ utilisateur);
 		if (utilisateur == null) {
-		System.out.println("utilisateur null");
 			BusinessException be = new BusinessException();
-		be.ajouterErreur(CodesResultatBLL.CONNEXION_KO); 
-		throw be;}
+			be.ajouterErreur(CodesResultatBLL.CONNEXION_KO); 
+			throw be;}
 		if (!utilisateur.getMotDePasse().equals(motdepasse)) {
-			System.out.println("mot de passe KO" + motdepasse + " " + utilisateur.getMotDePasse());
-		BusinessException be = new BusinessException();
-		be.ajouterErreur(CodesResultatBLL.CONNEXION_KO); 
-		throw be;}
+			BusinessException be = new BusinessException();
+			be.ajouterErreur(CodesResultatBLL.CONNEXION_KO); 
+			throw be;}
 		return utilisateur;
 	}
 
@@ -58,6 +54,10 @@ public class UtilisateurManager {
 		if (newUser.getEmail().trim().isEmpty() 
 				|| newUser.getEmail().length()>100) {
 			exception.ajouterErreur(CodesResultatBLL.EMAIL_KO);
+		}
+		int nbEmail = utilisateurDAO.countEmail(newUser.getEmail());
+		if (nbEmail > 0) {
+			exception.ajouterErreur(CodesResultatBLL.EMAIL_KO_2);
 		}
 		if (newUser.getTelephone().trim().isEmpty() 
 				|| newUser.getTelephone().length()>10 
@@ -153,8 +153,5 @@ public class UtilisateurManager {
 		} catch (Exception e) {
 		}
 	}
-
-		
-	}
-
+}
 

@@ -2,7 +2,6 @@ package fr.eni.javaee.encheres.servlets;
 
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -35,7 +34,7 @@ public class ServletCreationCompte extends HttpServlet {
 		String Rue = request.getParameter("Rue");
 		String Ville = request.getParameter("Ville");
 		String Confirmation = request.getParameter("Confirmation");
-		int Credit = (0);
+		int Credit = (100);
 
 		if (cancelButton != null) {
 			response.sendRedirect("pageConnexion");
@@ -44,13 +43,12 @@ public class ServletCreationCompte extends HttpServlet {
 		if (submitButton != null) {
 			Utilisateur newUserBO = new Utilisateur(Pseudo, Nom, Prenom,Email,Rue,CodePostal,Ville,MotDePasse,Credit,Telephone,Confirmation);
 			UtilisateurManager utilisateurManager = new UtilisateurManager();
-			
 			try { // essai d'insertion des donnees en BDD 
 				utilisateurManager.creerCompte(newUserBO);
 			} catch (BusinessException e) {
 				request.setAttribute("listeCodeErreur", e.getListeCodesErreur());
 				request.getRequestDispatcher("/WEB-INF/jsp/PageCreerCompte.jsp").forward(request, response);
-			}response.sendRedirect("ServletListeEncheresConnecte");
+			}
 		}
 	}
 }

@@ -15,4 +15,6 @@ public interface UtilisateurDAO {
 
     public int countPseudos(String pseudo);
 
+	public int countEmail(String pseudo);
+
     }
