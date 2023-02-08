@@ -10,32 +10,33 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import fr.eni.javaee.encheres.BusinessException;
+import fr.eni.javaee.encheres.bll.UtilisateurManager;
 import fr.eni.javaee.encheres.bo.Utilisateur;
 
 @WebServlet("/ServeltAffichantProfil")
 public class ServletAffichantProfil extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        Utilisateur utilisateur = (Utilisateur) session.getAttribute("utilisateur");
-        request.setAttribute("pseudo", utilisateur.getPseudo());
-        request.setAttribute("nom", utilisateur.getNom());
-        request.setAttribute("prenom", utilisateur.getPrenom());
-        request.setAttribute("email", utilisateur.getEmail());
-        request.setAttribute("rue", utilisateur.getRue());
-        request.setAttribute("codePostal", utilisateur.getCodePostal());
-        request.setAttribute("ville", utilisateur.getVille());
-        request.setAttribute("motDePasse", utilisateur.getMotDePasse());
-        request.setAttribute("telephone", utilisateur.getTelephone());
-        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/ConsultationProfil.jsp");
-        rd.forward(request, response);
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException { 
+		String otherUser = request.getParameter("otherUser");
+		request.setAttribute("otherUser", otherUser);
+		UtilisateurManager utilisateurManager = new UtilisateurManager();
+		try {
+			Utilisateur userDifferent = utilisateurManager.infosByPseudo(otherUser);
+			request.setAttribute("utilisateur", userDifferent);
+		} catch (BusinessException e) {
+			e.printStackTrace();
+		}
+		request.getRequestDispatcher("/WEB-INF/jsp/ConsultationProfil.jsp").forward(request, response);
 	}  
-	
-	
+
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/GestionProfil.jsp");
-        rd.forward(request, response);
+		String modifyButton = request.getParameter("modify");
+		if (modifyButton != null) {
+			response.sendRedirect("ServletGestionProfil");
+		}
 	}
 
 }
