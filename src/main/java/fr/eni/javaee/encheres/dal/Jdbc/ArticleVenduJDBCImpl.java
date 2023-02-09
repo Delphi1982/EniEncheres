@@ -86,7 +86,7 @@ public class ArticleVenduJDBCImpl implements ArticleVenduDAO {
 			pstmt.setInt(6, articleVendu.getUtilisateur().getNoUtilisateur());
 			pstmt.setInt(7, articleVendu.getCategorie().getNoCategorie());
 			//pstmt.setInt(8, articleVendu.getRetrait().getNoArticle());
-
+			pstmt.executeUpdate();
 			ResultSet rs = pstmt.getGeneratedKeys();
 
 			if(rs.next()) {

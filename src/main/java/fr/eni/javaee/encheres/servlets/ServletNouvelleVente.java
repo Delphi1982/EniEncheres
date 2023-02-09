@@ -72,7 +72,7 @@ public class ServletNouvelleVente extends HttpServlet {
 			ArticleVenduManager articleVenduManager = new ArticleVenduManager();
 			
 			articleVenduManager.insertArticle(article);
-			response.sendRedirect("ServletListeEncheresConnecte");
+			response.sendRedirect("ServletPageAccueilNonConnecte");
 			} catch (BusinessException e) {
 			   request.setAttribute("listeCodeErreur", e.getListeCodesErreur());
 			   this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/PageNouvelleVente.jsp").forward(request, response);
