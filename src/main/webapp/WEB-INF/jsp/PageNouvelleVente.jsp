@@ -8,7 +8,7 @@
 <title>Nouvelle vente</title>
 </head>
 <body>
-
+<c:if test="${not empty sessionScope.utilisateur}">
  <h1>Nouvelle vente</h1>
   <section class="vente-form">
     	<% Utilisateur utilisateur = (Utilisateur) session.getAttribute("utilisateur"); 
@@ -101,5 +101,9 @@
 		<input type="submit" value="Enregistrer"/>
 		<c:out value="${errorMessage}" />
 	</form>-->
+	</c:if>
+	 <c:if test="${empty sessionScope.utilisateur}">
+	  <a href="ServletPageConnexion" >Merci de vous inscrire avant d'ajouter un article à la vente</a>
+  	</c:if>
 </body>
 </html>

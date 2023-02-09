@@ -31,6 +31,17 @@ public class ServletPageConnexion extends HttpServlet {
 	{
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/pageConnexion.jsp");
         dispatcher.forward(request, response);
+		HttpSession session = request.getSession();
+		  if (session.getAttribute("utilisateur") != null) {
+		    try {// fermeture de la session et redirection vers la servlet pageaccueil
+		      session.invalidate();
+		      response.sendRedirect("ServletPageConnexion");
+		    } catch (IOException e) {
+		      e.printStackTrace();
+		    }
+		  } //else if (session.getAttribute("utilisateur") == null){
+		    
+		 // }
 	}
 
 
@@ -54,7 +65,7 @@ public class ServletPageConnexion extends HttpServlet {
 				HttpSession session = request.getSession();
 				session.setAttribute("utilisateur", utilisateur);
 
-				response.sendRedirect("ServletAffichantProfil");
+				response.sendRedirect("ServletPageAccueilNonConnecte");
 			}
 
 

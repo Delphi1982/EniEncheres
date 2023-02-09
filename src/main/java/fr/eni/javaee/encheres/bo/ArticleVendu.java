@@ -15,6 +15,7 @@ public class ArticleVendu implements Serializable {
 	private int prixVente;
 	private String etatVente;
 	private int noUtilisateur;
+	private int noCategorie;
 	private Utilisateur utilisateur;
 	private Categorie categorie;
 	private Retrait retrait;
@@ -33,6 +34,7 @@ public ArticleVendu(String nomArticle, int noArticle, String description,
 	this.finEncheres = finEncheres;
 	this.miseAPrix = miseAPrix;
 	this.noUtilisateur = noUtilisateur;
+	this.noCategorie = noCategorie;
 	
 }
 
@@ -174,6 +176,14 @@ public String toString() {
 			"}";
 			
 	}
+
+public int getNoCategorie() {
+	return noCategorie;
+}
+
+public void setNoCategorie(int noCategorie) {
+	this.noCategorie = noCategorie;
+}
 
 
 }

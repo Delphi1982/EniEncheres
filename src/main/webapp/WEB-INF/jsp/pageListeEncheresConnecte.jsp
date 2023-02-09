@@ -8,9 +8,9 @@
 </head>
 <body>
 	<c:if test="${not empty sessionScope.utilisateur}">
-      <a href="PageEnchere.jsp">Enchères</a>
-      <a href="PageVendre.jsp">Vendre un article</a>
-      <a href="PageProfil.jsp">Mon profil</a>
+      <a href="#">Enchères</a>
+      <a href="ServletNouvelleVente">Vendre un article</a>
+      <a href="ServletAffichantProfil">Mon profil</a>
 	  <a href="ServletPageConnexion" >Se deconnecter</a>
   	</c:if>
  	<c:if test="${empty sessionScope.utilisateur}">
