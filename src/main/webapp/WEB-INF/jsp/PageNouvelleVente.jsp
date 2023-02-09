@@ -25,12 +25,12 @@
     </p>
     
    <div class="input-field"> <!--Un div peut être?-->
-	<label for="categorie">Catégorie :</label>
-  		<select id="fruits" name="fruits">
-    		<option value="Informatique">Informatique</option>
-    			<option value="Meuble">Meuble</option>
-    			<option value="Bateau">Bateau</option>
-    		<option value="Maison">Maison</option>
+          <label for="categorie">Catégorie :</label>
+  		<select id="categorie" name="categorie">
+    		<option value="1">Informatique</option>
+    			<option value="2">Meuble</option>
+    			<option value="3">Bateau</option>
+    		<option value="4">Maison</option>
   		</select>
       </div>
       

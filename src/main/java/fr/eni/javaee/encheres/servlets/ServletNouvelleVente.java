@@ -49,6 +49,7 @@ public class ServletNouvelleVente extends HttpServlet {
 			String ville = request.getParameter("Ville");
 			
 			Categorie categorie = new Categorie();
+			categorie.setNoCategorie(Integer.valueOf(request.getParameter("categorie")));
 			article.setCategorie(categorie);
 			
 			Utilisateur utilisateur = (Utilisateur) session.getAttribute("utilisateur");
