@@ -8,7 +8,13 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<c:if test="${not empty sessionScope.utilisateur}">
-	</c:if>
+	FELICITATIONS !!! VOUS GAGNEZ CETTE ENCHERE :) 
+	un email vient de vous etre envoyé avec le détail de la commande.
+			<form action="ServletEnchereGagnee" method="post">
+			<div class="input-field">
+			<label for="gain"></label>
+				<input class="button" type="submit" value="Retour Page D'Accueil" name="submit"> 
+			</div>
+		</form>
 </body>
 </html>
