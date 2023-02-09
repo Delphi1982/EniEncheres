@@ -22,7 +22,7 @@ public class ServletPageConnexion extends HttpServlet {
 
 
     public ServletPageConnexion() {
-        super();
+        super(); 
     }
 
 
@@ -39,9 +39,7 @@ public class ServletPageConnexion extends HttpServlet {
 		    } catch (IOException e) {
 		      e.printStackTrace();
 		    }
-		  } //else if (session.getAttribute("utilisateur") == null){
-		    
-		 // }
+		  } 
 	}
 
 

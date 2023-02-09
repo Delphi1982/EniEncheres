@@ -6,10 +6,62 @@
 <head>
 <meta charset="UTF-8">
 <title>Nouvelle vente</title>
+<style>
+  /* Styles généraux */
+  body {
+    background-color: white;
+    font-family: Arial, sans-serif;
+    color: black;
+    text-align: center;
+  }
+
+  /* Styles pour la section de formulaire */
+  .vente-form {
+    display: inline-block;
+    margin-top: 50px;
+    text-align: left;
+  }
+
+  /* Styles pour les entrées de formulaire */
+  .input {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 2px solid black;
+    border-radius: 4px;
+  }
+
+  /* Styles pour les étiquettes de formulaire */
+  label {
+    font-weight: bold;
+    margin-right: 10px;
+  }
+
+  /* Styles pour les boutons */
+  input[type="submit"] {
+    width: 100%;
+    background-color: black;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  /* Styles pour les messages d'erreur */
+  .alert {
+    padding: 20px;
+    background-color: #f44336;
+    color: white;
+    margin-bottom: 15px;
+  }
+</style>
 </head>
 <body>
 <c:if test="${not empty sessionScope.utilisateur}">
- <h1>Nouvelle vente</h1>
+ <h1 style="text-align: center">Nouvelle vente</h1>
   <section class="vente-form">
     	<% Utilisateur utilisateur = (Utilisateur) session.getAttribute("utilisateur"); 
     	%>

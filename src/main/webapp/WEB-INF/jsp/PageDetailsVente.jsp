@@ -6,6 +6,10 @@
 <head>
 <title>Detail Vente</title>
 <style>
+* {
+	text-align: center;
+}
+
 table {
 	border-collapse: collapse;
 	width: 80%;
@@ -24,7 +28,7 @@ th {
 
 input[type="submit"] {
 	padding: 8px 16px;
-	background-color: #4CAF50;
+	background-color: black;
 	color: white;
 	border: none;
 	cursor: pointer;
@@ -32,10 +36,42 @@ input[type="submit"] {
 	display: block;
 	margin: 0 auto;
 }
+
+<style>
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #f2f2f2;
+  }
+
+  .navbar a {
+    color: #333;
+    text-decoration: none;
+    padding: 10px 20px;
+    font-weight:bold;
+  }
+
+  .navbar a:hover {
+    background-color: #ddd;
+  }
 </style>
+
+
 </head>
 <body>
-
+	<div class="navbar">
+		<c:if test="${not empty sessionScope.utilisateur}">
+			<a href="#">Enchères</a>
+			<a href="ServletNouvelleVente">Vendre un article</a>
+			<a href="ServletAffichantProfil">Mon profil</a>
+			<a href="ServletPageConnexion">Se deconnecter</a>
+		</c:if>
+		<c:if test="${empty sessionScope.utilisateur}">
+			<a href="ServletPageConnexion">S'inscrire - Se connecter</a>
+		</c:if>
+	</div>
 	<form action="submitArticleVendu" method="post">
 		<table>
 			<tr>
@@ -64,10 +100,12 @@ input[type="submit"] {
 	<c:if test="${not empty sessionScope.utilisateur}">
 		<form action="ServletDetailsVente" method="post">
 			<div class="input-field">
-				<label for="enchere">Nombre de credits pour encherir (min.
-					1) : </label> <input class="input" type="number" name="enchere"
-					id="enchere" step="1" max="300" required>
-					<input class="button" type="submit" value="Enchérir" name="submit"> 
+				<label for="enchere" style="text-align: center">Nombre de
+					credits pour encherir (min. 1) : </label> <input class="input"
+					type="number" name="enchere" id="enchere" step="1" max="300"
+					required> <br>
+				<p></p>
+				<input class="button" type="submit" value="Enchérir" name="submit">
 			</div>
 		</form>
 	</c:if>

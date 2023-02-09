@@ -5,6 +5,59 @@
 <html>
 <head>
 <title>Liste des enchères</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+    }
+    .header {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+    }
+    .header a {
+      margin-right: 10px;
+    }
+    .center {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .left {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 50%;
+      margin-right: 20px;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    label {
+      margin-bottom: 10px;
+    }
+    input[type="text"],
+    select {
+      padding: 10px;
+      font-size: 16px;
+      width: 100%;
+    }
+    input[type="submit"],
+    .buttoncrea a {
+      padding: 10px 20px;
+      background-color: black;
+      color: white;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin-top: 20px;
+    }
+  </style>
 </head>
 <body>
 	<c:if test="${not empty sessionScope.utilisateur}">
@@ -18,9 +71,9 @@
 	</c:if>
 	<h1 class="center">Liste des enchères</h1>
 	<div class="left">
-		<h2>Filtres</h2>
+			<h2>Recherche par mot-clé</h2>
 		<form method="post">
-			<label for="search">Recherche :</label> <input type="text"
+			<label for="search"></label> <input type="text"
 				id="search" name="search" placeholder="Le nom de l'article contient">
 			<!-- 			<button type="submit" name="rechercher">Rechercher</button> -->
 			<input class="button" type="submit" value="Rechercher" name="submit">  <br> <br>

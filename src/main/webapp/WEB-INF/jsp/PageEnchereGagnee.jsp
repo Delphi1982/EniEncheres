@@ -6,6 +6,28 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+    <style>
+      body {
+        text-align: center;
+        padding: 1em;
+      }
+  form {
+    display: inline-block;
+    margin-top: 2em;
+  }
+
+  .input-field {
+    text-align: center;
+  }
+
+  .button {
+    padding: 0.5em 1em;
+    background-color: lightblue;
+    border: none;
+    border-radius: 0.5em;
+    cursor: pointer;
+  }
+</style>
 </head>
 <body>
 	FELICITATIONS !!! VOUS GAGNEZ CETTE ENCHERE :) 
