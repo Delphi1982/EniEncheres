@@ -6,27 +6,40 @@ h1 {
 	
 }
 
+.center{
+	text-align: center;
+}
+
 h2 {
-	margin-left : 400px;
+/* 	margin-left : 400px; */
+	text-align: center;
+}
+.profil-form{
+	display: inline-flex;
+
 }
 
 .case {
 	border: 2px solid black;
 	border-radius: 0px;
+	margin-left: 30px;
 }
-
+.input-style{
+	display: inline-flex;
+	justify-content: space-between;
+}
 .ProfilPart1{
-	width: 250px;
-    margin-left : 150px;
+/*  	width: 250px; */
+/*     margin-left : 150px; */
 	display : flex;
 	flex-direction : column;
 	justify-content : space-between;
 }
 
 .ProfilPart2 {
-	width: 250px;
-	margin-left : 550px;
-	margin-top : -379px;
+/*  	width: 250px;  */
+margin-left : 70px;
+/*  	margin-top : -379px;  */
 	display : flex;
 	flex-direction : column;
 	justify-content : space-between;
@@ -35,8 +48,9 @@ h2 {
 
 .button1 {
 	width: 200 px;
-	padding: 20px;
-	margin-left : 350px;
+	padding: 20px 70px;
+	margin-top: 50px;
+/* 	margin-left : 350px; */
 	border: 2px solid black;
 	border-radius: 0px;
 	color: black;
@@ -47,7 +61,8 @@ h2 {
 
 .button2 {
 	width: 100 px;
-	padding: 20px;
+	padding: 20px 60px;
+	margin-top: 50px;
 	margin-left : 50px;
 	border: 2px solid black;
 	border-radius: 0px;

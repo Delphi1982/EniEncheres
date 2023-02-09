@@ -12,8 +12,8 @@ import fr.eni.javaee.encheres.BusinessException;
 import fr.eni.javaee.encheres.bll.UtilisateurManager;
 import fr.eni.javaee.encheres.bo.Utilisateur;
 
-@WebServlet("/PageCreerCompte")
-public class ServletCreationCompte extends HttpServlet {
+@WebServlet("/ServletCreationCompte")
+public class ServletCreationCompte extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -37,7 +37,7 @@ public class ServletCreationCompte extends HttpServlet {
 		int Credit = (100);
 
 		if (cancelButton != null) {
-			response.sendRedirect("ServletPageAccueilNonConnecte");
+			response.sendRedirect("pageConnexion");
 		}
 
 		if (submitButton != null) {
@@ -45,7 +45,6 @@ public class ServletCreationCompte extends HttpServlet {
 			UtilisateurManager utilisateurManager = new UtilisateurManager();
 			try { // essai d'insertion des donnees en BDD 
 				utilisateurManager.creerCompte(newUserBO);
-				response.sendRedirect("ServletPageConnexion");
 			} catch (BusinessException e) {
 				request.setAttribute("listeCodeErreur", e.getListeCodesErreur());
 				request.getRequestDispatcher("/WEB-INF/jsp/PageCreerCompte.jsp").forward(request, response);

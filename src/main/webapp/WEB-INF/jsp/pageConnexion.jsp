@@ -70,8 +70,7 @@
 		</div>
 
 		<div>
-			<input class="crea" type="submit" value="Créer compte"
-				onclick="location.href='/ServletCreationCompte.java'">
+			<input class="crea" type="submit" value="Créer compte" onclick="location.href='/ServletCreationCompte'; return false;">
 		</div>
 
 

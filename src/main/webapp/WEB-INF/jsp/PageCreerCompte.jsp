@@ -31,48 +31,48 @@
 
 	<form class="center" method="POST">
 		<h2>Mon Profil</h2>
-		<div>
+		<div class="profil-form">
 			<div class="ProfilPart1">
-				<p>
+				<p class="input-style">
 					<label for="Pseudo">Pseudo:</label><input class="case" type="text" id="Pseudo"
 						name="Pseudo">
 				</p>
-				<p>
+				<p class="input-style">
 					<label for="Prenom">Prénom:</label><input class="case" type="text" id="Prenom"
 						name="Prenom" required>
 				</p>
-				<p>
+				<p class="input-style">
 					<label for="Telephone">Téléphone:</label><input class="case" type="text"
 						id="Telephone" name="Telephone" required>
 				</p>
-				<p>
+				<p class="input-style">
 					<label for="CodePostal">Code postal:</label><input class="case" type="text"
 						id="CodePostal" name="CodePostal" required>
 				</p>
-				<p>
+				<p class="input-style">
 					<label for="MotDePasse">Mot de passe:</label><input class="case" type="password"
 						id="MotDePasse" name="MotDePasse" required>
 				</p>
 			</div>
 			
 			<div class="ProfilPart2">
-				<p>
+				<p class="input-style">
 					<label for="Nom">Nom:</label><input class="case" type="text" id="Nom" name="Nom"
 						required>
 				</p>
-				<p>
+				<p class="input-style">
 					<label for="Email">Email:</label><input class="case" type="email" id="Email"
 						name="Email" required>
 				</p>
-				<p>
+				<p class="input-style">
 					<label for="Rue">Rue:</label><input class="case" type="text" id="Rue" name="Rue"
 						required>
 				</p>
-				<p>
+				<p class="input-style">
 					<label for="Ville">Ville:</label><input class="case" type="text" id="Ville"
 						name="Ville" required>
 				</p>
-				<p>
+				<p class="input-style">
 					<label for="Confirmation">Confirmation:</label><input class="case"
 						type="password" id="Confirmation" name="Confirmation" required>
 				</p>
