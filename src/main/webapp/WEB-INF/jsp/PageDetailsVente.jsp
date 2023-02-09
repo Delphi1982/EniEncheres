@@ -4,8 +4,37 @@
 <html>
 <head>
     <title>Detail Vente</title>
+    <style>
+   table {
+      border-collapse: collapse;
+      width: 80%;
+      margin: 20px auto;
+   }
+
+   th, td {
+      padding: 8px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+   }
+
+   th {
+      background-color: #f2f2f2;
+   }
+
+   input[type="submit"] {
+      padding: 8px 16px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+      margin-top: 20px;
+      display: block;
+      margin: 0 auto;
+   }
+</style>
 </head>
 <body>
+
 <form action="submitArticleVendu" method="post">
    <table>
       <tr>
@@ -24,14 +53,12 @@
          <td>${articleVendu.description}</td>
          <td>${articleVendu.noCategorie}</td>
          <td>${articleVendu.miseAPrix}</td>
-         <td><fmt:parseDate value="${articleVendu.finEncheres}" pattern="yyyy-MM-dd" var="finEncheres" type="date"/><fmt:formatDate type = "date" 
-         value = "${finEncheres}" />
+         <td>
+            <fmt:parseDate value="${articleVendu.finEncheres}" pattern="yyyy-MM-dd" var="finEncheres" type="date"/>
+            <fmt:formatDate type="date" value="${finEncheres}" />
          </td>
          <td>${articleVendu.noUtilisateur}</td>
       </tr>
    </table>
    <input type="submit" value="Submit">
 </form>
-
-</body>
-</html>
