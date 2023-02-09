@@ -83,10 +83,9 @@ public class ArticleVenduJDBCImpl implements ArticleVenduDAO {
 			pstmt.setDate(3, java.sql.Date.valueOf(articleVendu.getDebutEncheres()));
 			pstmt.setDate(4, java.sql.Date.valueOf(articleVendu.getFinEncheres()));
 			pstmt.setInt(5, articleVendu.getMiseAPrix());
-			pstmt.setInt(6, articleVendu.getCategorie().getNoCategorie());
-			pstmt.setInt(7, articleVendu.getRetrait().getNoArticle());
-			// pstmt.setInt(8, articleVendu.getUtilisateur().getNoUtilisateur());
-			pstmt.executeUpdate();
+			pstmt.setInt(6, articleVendu.getUtilisateur().getNoUtilisateur());
+			pstmt.setInt(7, articleVendu.getCategorie().getNoCategorie());
+			//pstmt.setInt(8, articleVendu.getRetrait().getNoArticle());
 
 			ResultSet rs = pstmt.getGeneratedKeys();
 
