@@ -17,8 +17,8 @@ import fr.eni.javaee.encheres.dal.DAO.ArticleVenduDAO;
 public class ArticleVenduJDBCImpl implements ArticleVenduDAO {
 	private static final String SELECT_ALL = "SELECT * FROM ARTICLES_VENDUS";
 	private static final String SELECT_BY_ID = "SELECT * FROM ARTICLES_VENDUS where no_article = ?";
-	private static final String INSERT_ARTICLES_VENDUS = "INSERT INTO ARTICLES_VENDUS (nom_article,description,date_debut_encheres,date_fin_encheres,prix_initial,no_categorie,no_utilisateur)"
-			+ "VALUES(?,?,?,?,?,?,?,?)";
+	private static final String INSERT_ARTICLES_VENDUS = "INSERT INTO ARTICLES_VENDUS (nom_article,description,date_debut_encheres,date_fin_encheres,prix_initial,no_utilisateur,no_categorie)"
+			+ "VALUES(?,?,?,?,?,?,?)";
 	
 
 	public List<ArticleVendu> selectAllArticles() throws BusinessException {
@@ -85,7 +85,7 @@ public class ArticleVenduJDBCImpl implements ArticleVenduDAO {
 			pstmt.setInt(5, articleVendu.getMiseAPrix());
 			pstmt.setInt(6, articleVendu.getCategorie().getNoCategorie());
 			pstmt.setInt(7, articleVendu.getRetrait().getNoArticle());
-			pstmt.setInt(8, articleVendu.getUtilisateur().getNoUtilisateur());
+			// pstmt.setInt(8, articleVendu.getUtilisateur().getNoUtilisateur());
 			pstmt.executeUpdate();
 
 			ResultSet rs = pstmt.getGeneratedKeys();
