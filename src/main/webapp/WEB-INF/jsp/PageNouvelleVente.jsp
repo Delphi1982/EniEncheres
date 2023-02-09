@@ -57,9 +57,39 @@
     color: white;
     margin-bottom: 15px;
   }
+  <style>
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #f2f2f2;
+  }
+
+  .navbar a {
+    color: #333;
+    text-decoration: none;
+    padding: 10px 20px;
+    font-weight:bold;
+  }
+
+  .navbar a:hover {
+    background-color: #ddd;
+  }
 </style>
 </head>
 <body>
+<div class="navbar">
+		<c:if test="${not empty sessionScope.utilisateur}">
+			<a href="#">Enchères</a>
+			<a href="ServletNouvelleVente">Vendre un article</a>
+			<a href="ServletAffichantProfil">Mon profil</a>
+			<a href="ServletPageConnexion">Se deconnecter</a>
+		</c:if>
+		<c:if test="${empty sessionScope.utilisateur}">
+			<a href="ServletPageConnexion">S'inscrire - Se connecter</a>
+		</c:if>
+	</div>
 <c:if test="${not empty sessionScope.utilisateur}">
  <h1 style="text-align: center">Nouvelle vente</h1>
   <section class="vente-form">
