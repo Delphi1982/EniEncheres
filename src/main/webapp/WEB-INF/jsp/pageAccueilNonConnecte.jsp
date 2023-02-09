@@ -23,7 +23,7 @@
 			<label for="search">Recherche :</label> <input type="text"
 				id="search" name="search" placeholder="Le nom de l'article contient">
 			<!-- 			<button type="submit" name="rechercher">Rechercher</button> -->
-			<a href="ServletNouvelleVente">Rechercher</a> <br> <br>
+			<input class="button" type="submit" value="Rechercher" name="submit">  <br> <br>
 		</form>
 		<form>
 			<c:if test="${not empty sessionScope.utilisateur}">
@@ -37,7 +37,7 @@
 			</c:if>
 		</form>
 		<div class="buttoncrea">
-			<a href="ServletDetailsVente?idArticle=16">Lien vers la Vente n°1</a>
+			<a href="ServletDetailsVente?idArticle=16">Détail Vente - lot n°16</a>
 		</div>
 	</div>
 </body>
