@@ -36,6 +36,9 @@
 				</select>
 			</c:if>
 		</form>
+		<div class="buttoncrea">
+			<a href="ServletDetailsVente?idArticle=16">Lien vers la Vente n°1</a>
+		</div>
 	</div>
 </body>
 </html>

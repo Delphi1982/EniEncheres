@@ -7,19 +7,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import fr.eni.javaee.encheres.bll.ArticleVenduManager;
-
-@WebServlet("/ServletPageAccueilNonConnecte")
-public class ServletPageAccueilNonConnecte extends HttpServlet {
+@WebServlet("/ServletEnchereGagnee")
+public class ServletEnchereGagnee extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		request.getRequestDispatcher("/WEB-INF/jsp/pageAccueilNonConnecte.jsp").forward(request, response);
-		
+		request.getRequestDispatcher("/WEB-INF/jsp/PageEnchereGagnee.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
 	}
+
 }

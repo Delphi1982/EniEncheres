@@ -38,8 +38,11 @@ public class ServletDetailsVente extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		String submitButton = request.getParameter("submit");
+		if (submitButton != null) {
+		int enchereUtilisateur = Integer.valueOf(request.getParameter("enchere"));
+		response.sendRedirect("ServletEnchereGagnee");
+		}
 	}
 
 }
