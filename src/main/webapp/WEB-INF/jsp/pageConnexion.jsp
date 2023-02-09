@@ -25,9 +25,11 @@
 		<a href="ServletPageConnexion.java"></a>
 	</c:if>
 
-
-	<h1>ENI-Enchères</h1>
-
+<div class="logo">
+	<a href="ServletListeEncheresConnecte"> <img
+		src="./image/logo.png" alt="Eni Enchères">
+	</a>
+</div>
 	<c:if test="${!empty listeCodesErreur}">
 		<div class="alert alert-danger" role="alert">
 			<strong>Erreur!</strong>
@@ -70,9 +72,9 @@
 		</div>
 
 		<div class="buttoncrea">
-			<a href ="ServletCreationCompte">Créer compte</a>
+			<a href="ServletCreationCompte">Créer compte</a>
 		</div>
-		
+
 
 
 

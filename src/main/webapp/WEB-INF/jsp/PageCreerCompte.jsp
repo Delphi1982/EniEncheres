@@ -16,7 +16,11 @@
 <title>ENI-enchères</title>
 </head>
 <body>
-	<h1>ENI-enchères</h1>
+	<div class="logo">
+	<a href="ServletListeEncheresConnecte"> <img
+		src="./image/logo.png" alt="Eni Enchères">
+	</a>
+</div>
 
 	<c:if test="${!empty listeCodeErreur}">
 		<div class="alert alert-danger" role="alert">
@@ -39,42 +43,42 @@
 				</p>
 				<p class="input-style">
 					<label for="Prenom">Prénom:</label><input class="case" type="text" id="Prenom"
-						name="Prenom">
+						name="Prenom" required>
 				</p>
 				<p class="input-style">
 					<label for="Telephone">Téléphone:</label><input class="case" type="text"
-						id="Telephone" name="Telephone">
+						id="Telephone" name="Telephone" required>
 				</p>
 				<p class="input-style">
 					<label for="CodePostal">Code postal:</label><input class="case" type="text"
-						id="CodePostal" name="CodePostal">
+						id="CodePostal" name="CodePostal" required>
 				</p>
 				<p class="input-style">
 					<label for="MotDePasse">Mot de passe:</label><input class="case" type="password"
-						id="MotDePasse" name="MotDePasse">
+						id="MotDePasse" name="MotDePasse" required>
 				</p>
 			</div>
 			
 			<div class="ProfilPart2">
 				<p class="input-style">
 					<label for="Nom">Nom:</label><input class="case" type="text" id="Nom" name="Nom"
-						>
+						required>
 				</p>
 				<p class="input-style">
 					<label for="Email">Email:</label><input class="case" type="email" id="Email"
-						name="Email" >
+						name="Email" required>
 				</p>
 				<p class="input-style">
 					<label for="Rue">Rue:</label><input class="case" type="text" id="Rue" name="Rue"
-						>
+						required>
 				</p>
 				<p class="input-style">
 					<label for="Ville">Ville:</label><input class="case" type="text" id="Ville"
-						name="Ville" >
+						name="Ville" required>
 				</p>
 				<p class="input-style">
 					<label for="Confirmation">Confirmation:</label><input class="case"
-						type="password" id="Confirmation" name="Confirmation" >
+						type="password" id="Confirmation" name="Confirmation" required>
 				</p>
 			</div>
 		</div>
