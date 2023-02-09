@@ -69,9 +69,10 @@
 
 		</div>
 
-		<div>
-			<a href ="ServletCreationCompte" class="crea" >Créer compte</a>
+		<div class="buttoncrea">
+			<a href ="ServletCreationCompte">Créer compte</a>
 		</div>
+		
 
 
 
