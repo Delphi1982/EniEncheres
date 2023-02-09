@@ -10,8 +10,12 @@
 <title>Profil Utilisateur</title>
 </head>
 <body>
-
-<h1>Profil de l'utilisateur</h1>
+	<div class="logo">
+		<a href="ServletPageAccueilNonConnecte"> <img
+			src="./image/logo.png" alt="Eni Enchères">
+		</a>
+	</div>
+<h2>Profil de l'utilisateur</h2>
 <table>
   <tr>
     <td>Pseudo :</td>

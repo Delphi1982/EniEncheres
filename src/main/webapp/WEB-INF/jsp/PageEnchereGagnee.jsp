@@ -30,6 +30,12 @@
 </style>
 </head>
 <body>
+	<div class="logo">
+		<a href="ServletPageAccueilNonConnecte"> <img
+			src="./image/logo.png" alt="Eni Enchères">
+		</a>
+	</div>
+	
 	FELICITATIONS !!! VOUS GAGNEZ CETTE ENCHERE :) 
 	un email vient de vous etre envoyé avec le détail de la commande.
 			<form action="ServletEnchereGagnee" method="post">

@@ -6,12 +6,25 @@
 <html>
 <head>
 <meta charset="UTF-8">
+
 <title>Insert title here</title>
+
+<style>
+.logo {
+  margin-left: 3em;
+  margin-top: 3em;
+}
+</style>
+
 </head>
 <body>
-  <h1 class="center">ENI-enchères</h1>
+  <div class="logo">
+	<a href="ServletPageAccueilNonConnecte"> <img
+		src="./image/logo.png" alt="Eni Enchères">
+	</a>
+</div>
 
-<h1>Profil de l'utilisateur</h1>
+<h2>Profil de l'utilisateur</h2>
 
        	<c:if test="${!empty listeCodeErreur}">
 			<div class="alert alert-danger" role="alert">
@@ -25,7 +38,7 @@
 		</c:if>
  
    <form action="ServletGestionProfil" class="center" method="POST">
-  <h2>Mon Profil</h2>
+  <h3>Mon Profil</h3>
   	<table>
 	<tr>
 	<td>

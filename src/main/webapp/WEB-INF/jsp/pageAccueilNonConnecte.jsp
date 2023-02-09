@@ -6,6 +6,7 @@
 <head>
 <title>Liste des enchères</title>
   <style>
+
     body {
       display: flex;
       flex-direction: column;
@@ -79,6 +80,11 @@
   </style>
 </head>
 <body>
+	<div class="logo">
+		<a href="ServletPageAccueilNonConnecte"> <img
+			src="./image/logo.png" alt="Eni Enchères">
+		</a>
+	</div>
 	<div class="navbar">
 		<c:if test="${not empty sessionScope.utilisateur}">
 			<a href="#">Enchères</a>

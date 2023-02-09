@@ -18,6 +18,11 @@
   </style>
 </head>
 <body>
+	<div class="logo">
+		<a href="ServletPageAccueilNonConnecte"> <img
+			src="./image/logo.png" alt="Eni Enchères">
+		</a>
+	</div> 
   <div class="navbar">
     <div>ENI-ENCHÈRES</div>
     <div>
