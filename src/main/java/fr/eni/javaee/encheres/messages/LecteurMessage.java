@@ -35,7 +35,7 @@ public class LecteurMessage {
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			message="Une erreur inconnue est survenue";
+			message="Identifiant ou mot de passe incorrect";
 		}
 		return message;
 	}

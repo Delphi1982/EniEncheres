@@ -17,7 +17,7 @@
 </head>
 <body>
 	<div class="logo">
-	<a href="ServletListeEncheresConnecte"> <img
+	<a href="ServletPageAccueilNonConnecte"> <img
 		src="./image/logo.png" alt="Eni Enchères">
 	</a>
 </div>
